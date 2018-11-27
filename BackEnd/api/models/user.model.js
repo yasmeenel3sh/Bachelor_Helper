@@ -1,50 +1,64 @@
 var mongoose = require('mongoose');
 
 
-var userSchema = mongoose.Schema({
-  name :{
-  type:String,
-  required: true
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-    lowercase: true
-  },
-  password: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  verified:{
-  type:Boolean
-  },
-  major:{
-    type:String,
-    required:true
-  },
-  bachCountry:{
-    type:String
-  },
-  bachUni:{
-    type:String
-  },
-  info:{
-    type:String
-  }
-  
-  
+
+const UserSchema = new mongoose.Schema({
+
+    email: {
+        type: String,
+        unique: true,
+        required: true,
+        trim: true,
+        lowercase: true
+    },
+    password: {
+        type: String,
+        required: true,
+        trim: true //Will be trimmed in the frontend as well while sending the request.
+    },
+    name: {
+        type: String,
+         required: true 
+    },
+
+    photo: {
+        type: String,
+        default: 'lam3i'
+    },
+    major:{
+        type:String,
+        required:true,
+        enum:["computerscience","dmet","businessinformatics","appliedarts","management","electronics","law","pharmacy","communication","networks","mechatronics","production","material"]
+
+    },
+    bachCountry:{
+        type:String
+    },
+    bachUni:{
+        type:String
+    },
+    info:{
+        type:String
+    }
+
+
+
+    //------ Teacher ------ //
+
+   
 });
 
+
 // Override the transform function of the schema to delete the password before it returns the object
-if (!userSchema.options.toObject) {
-  userSchema.options.toObject = {};
+
+if (!UserSchema.options.toObject) {
+    UserSchema.options.toObject = {};
 }
-userSchema.options.toObject.transform = (document, transformedDocument) => {
-  delete transformedDocument.password;
-  return transformedDocument;
+
+UserSchema.options.toObject.transform = function (document, transformedDocument) {
+    delete transformedDocument.password;
+    return transformedDocument;
 };
 
-mongoose.model('User', userSchema);
+
+const User = mongoose.model('User', UserSchema);

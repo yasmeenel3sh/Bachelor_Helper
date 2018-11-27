@@ -1,22 +1,37 @@
-# nodejs-to-do
+<h1 align="center">  T20 | Lamba 💡 </h1>
 
-The backend for a simple to-do list web app.
+# <h2 align="center"> [Nawwar Educational Platform](https://nawwar.tk) </h2>
 
-[API Documentation](https://documenter.getpostman.com/view/3080005/to-do-app/RVnSJ2y9#c7be581d-a124-466d-8b48-897a1adbf4b5
-)
+<p align="center">
+  <img src ="pics/HomePage.png" />
+</p>
 
-[Deployed Server](https://nodejs-to-do.herokuapp.com)
+---
 
-## Technology:
 
-* Node.js v8+
-* Express.js v4
-* MongoDB
+# Awards:
+### Top Nawwar Team 🏆 🏅
 
-## How to run?
+## Getting Started:
+> Open **3** Terminals and run each of the following command
 
-1. Clone the repo.
-2. npm install
-3. npm start
+_**Server:**_
 
-&#9400; Omar Doma 2018
+```
+npm install
+npm start 
+```
+
+_**DataBase:**_
+
+```
+mongod
+```
+
+_**Angular:**_
+
+```
+cd angular-src
+npm install
+ng serve
+```
