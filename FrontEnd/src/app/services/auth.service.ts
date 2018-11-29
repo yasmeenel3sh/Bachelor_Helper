@@ -1,8 +1,7 @@
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
-
+import {environment } from '../../environments/environment'
 @Injectable({
     providedIn: 'root'
   })
@@ -22,12 +21,12 @@ import { map } from 'rxjs/operators';
      bachUni:"",
      info:""
     }
-    return this.http.post('auth/signup', signUp);
+    return this.http.post(environment.domain+'auth/register', signUp);
   }
 
    public  login(email,password) {
         var reqHeader = new HttpHeaders({'Content-Type':'application/json'});
-        return this.http.post('auth/login', {email:email,password:password},{headers:reqHeader});
+        return this.http.post(environment.domain+'auth/login', {email:email,password:password},{headers:reqHeader});
       
       }
     
