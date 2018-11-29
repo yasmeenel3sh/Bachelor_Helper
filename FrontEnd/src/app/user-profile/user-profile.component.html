@@ -10,12 +10,12 @@
 <body>
   
 <!-- Page content -->
-<div class="w3-main" >
+<!-- <div class="w3-main" >
 <div id="Borge" class="w3-container person">
   <br>
   <img class="w3-round  w3-animate-top" src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX11726894.jpg" style="width:30%;">
   
-  <form class="double" >
+  <form class="double" [formGroup]="formData" (ngSubmit)="onSubmit()">
 
       <label class="line" style="margin-bottom:30px;margin-left:30px;">MY Bachelor Abroad related information :</label><br><br>
 
@@ -45,11 +45,13 @@
     <label  style="margin-left:30px;">Year :</label>
     <label *ngIf="!editProfile"  style="margin-left:80px;">2018</label>
     <input  *ngIf="editProfile" type="text" formControlName="year"
-    placeholder="year"  style="margin-left:30px;"><br><br><br>
+    placeholder="year"  style="margin-left:30px;"><br><br><br> -->
     
      <!-- <input *ngIf="editProfile" type="submit" value="Submit"><br> -->
-     <button style="margin-left:30px;" type="button" (click)='enableEdit()'>Edit My Profile information</button>
-    
+     <button *ngIf="!editProfile" type="button" (click)='enableEdit()'>Edit My Profile information</button>
+     <button *ngIf="editProfile"  type="submit" class="btn" [disabled]="formData.invalid">
+        submitMydata
+      </button>
 
   <p style="margin-left:30px;">
       What's the best way to introduce yourself at a job interview? How can you start off an interview making the best possible impression? First, impressions can play a major role in how an employer perceives you as a candidate. What you say 
@@ -72,6 +74,6 @@
   
     
 </div>
-</div>
+</div> -->
 </body>
 </html> 
