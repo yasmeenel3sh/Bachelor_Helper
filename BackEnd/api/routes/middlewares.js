@@ -35,14 +35,15 @@ module.exports.isAuthenticated = function (req, res, next) {
             data: null
           });
         }
-        if (!user.mailActivated) {
-          return res.status(401).json({
-            error: null,
-            msg: 'Email needs to be activated.',
-            data: null
-          });
-        }
+        // if (!user.mailActivated) {
+        //   return res.status(401).json({
+        //     error: null,
+        //     msg: 'Email needs to be activated.',
+        //     data: null
+        //   });
+        // }
         req.decodedToken = decodedToken;
+        console.log(decodedToken);
         return next();
       });
     } else {
