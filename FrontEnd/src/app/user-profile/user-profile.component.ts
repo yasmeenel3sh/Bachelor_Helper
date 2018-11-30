@@ -1,6 +1,6 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import {FormBuilder,FormGroup, Validators,ReactiveFormsModule, FormsModule} from "@angular/forms";
-import { BrowserModule } from '@angular/platform-browser';
+
 
 
 
@@ -11,13 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
   providers: [FormBuilder,ReactiveFormsModule,FormsModule],
  
 })
-// @NgModule({
-//   imports: [
-//     BrowserModule,
-//     ReactiveFormsModule,
-//     FormsModule
-//   ],
-// })
+
 export class UserProfileComponent implements OnInit {
 
 
@@ -25,7 +19,7 @@ export class UserProfileComponent implements OnInit {
     
     userName: ['usr',[Validators.required,Validators.maxLength(200)]],
     country: ['egy',[Validators.required,Validators.maxLength(200)]],
-    Major: ['met',[Validators.maxLength(200)]],
+    major: ['met',[Validators.maxLength(200)]],
     year: ['2016', [Validators.required,Validators.maxLength(50)]],
     university: ['guc ', [Validators.required,Validators.maxLength(50)]],
     
@@ -44,4 +38,7 @@ export class UserProfileComponent implements OnInit {
        this.editProfile=true;
   }
 
+onSubmit():void{
+console.log(this.formData);
+}
 }

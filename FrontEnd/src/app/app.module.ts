@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,7 +10,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SearchComponent } from './search/search.component';
 import { SearchService } from './search/search.service';
-import { FormsModule} from '@angular/forms';
 import {  HttpClientModule } from '../../node_modules/@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -21,13 +21,18 @@ import { NavbarComponent } from './navbar/navbar.component';
     DashboardComponent,
     UserProfileComponent,
     SearchComponent,
+<<<<<<< HEAD
     LoginComponent,
     NavbarComponent
+=======
+   
+>>>>>>> f999af28a27699024e196e43e91139bfe8d5c76b
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [
