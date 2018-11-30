@@ -38,7 +38,7 @@ const UserSchema = new mongoose.Schema({
         type:String
     },
     bachYear:{
-        type:string
+        type:String
     },
     info:{
         type:String

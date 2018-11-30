@@ -11,9 +11,8 @@ router.post('/auth/register', mw.isNotAuthenticated, authCtrl.register);
 router.post('/auth/login', mw.isNotAuthenticated, authCtrl.login);
   // --------------------- Search Contoller -------------------- //
 router.get('/search/:country/:university/:major/:curr/:pp', SearchController.Search);
+
   // --------------------- End of Search Controller ------------ //
-
-
 
 
 module.exports = router;

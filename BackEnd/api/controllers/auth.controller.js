@@ -128,7 +128,18 @@ module.exports.register = function(req, res, next) {
     });
   });
 };
-
+module.exports.getAll = function (req, res, next) {
+  User.find({}).exec(function (err, users) {
+    if (err) {
+      return next(err);
+    }
+    res.status(200).json({
+      err: null,
+      msg: 'Products retrieved successfully.',
+      data: users
+    });
+  });
+};
 
 module.exports.login = function(req, res, next) {
   // Check that the body keys are in the expected format and the required fields are there
