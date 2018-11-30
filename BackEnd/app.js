@@ -42,7 +42,7 @@ app.use(multer({
 // Middleware to log all of the requests that comes to the server
 logger.token('id', function getName(req) {
     if (req.decodedToken)
-        return req.decodedToken.user.name.firstName + ' ' + req.decodedToken.user.name.lastName;
+        return req.decodedToken.user.name;
     return '';
 })
 

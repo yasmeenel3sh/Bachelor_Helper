@@ -11,6 +11,8 @@ import { SearchComponent } from './search/search.component';
 import { SearchService } from './search/search.service';
 import { FormsModule} from '@angular/forms';
 import {  HttpClientModule } from '../../node_modules/@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {  HttpClientModule } from '../../node_modules/@angular/common/http';
     RegisterComponent,
     DashboardComponent,
     UserProfileComponent,
-    SearchComponent
+    SearchComponent,
+    LoginComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

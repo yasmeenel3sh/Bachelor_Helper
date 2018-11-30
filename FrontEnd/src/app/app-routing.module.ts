@@ -4,12 +4,15 @@ import {RegisterComponent} from './register/register.component';
 import{AppComponent} from './app.component' ;
 import {DashboardComponent} from './dashboard/dashboard.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import {LoginComponent } from './login/login.component'
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent},
+  { path: '', component: AppComponent},
+  {path: 'home',component: DashboardComponent},
   { path:'register',component: RegisterComponent},
   { path:'profile',component: UserProfileComponent},
-  { path:'**',redirectTo:''}
+  { path:'login',component:LoginComponent},
+  { path:'**',redirectTo:'home'}
     ];
 
 @NgModule({
