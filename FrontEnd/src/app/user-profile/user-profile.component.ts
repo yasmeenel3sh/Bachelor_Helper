@@ -1,7 +1,7 @@
-import { Component, OnInit, NgModule, APP_INITIALIZER } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {FormBuilder,FormGroup, Validators,ReactiveFormsModule, FormsModule} from "@angular/forms";
 import {UserDTO} from "./data/userDTO";
-import { NgOnChangesFeature } from '@angular/core/src/render3';
+
 
 @Component({
   selector: 'app-user-profile',

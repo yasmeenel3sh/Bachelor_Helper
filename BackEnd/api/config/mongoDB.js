@@ -61,4 +61,5 @@ mongoose.connect(dbUrl, function (err) {
     });
 });
 
+
 require('../models/user.model');

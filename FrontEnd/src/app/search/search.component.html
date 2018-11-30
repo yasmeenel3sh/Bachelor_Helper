@@ -1,3 +1,64 @@
-<p>
-  search works!
-</p>
+  <div class="block-header">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 col-sm-12">
+        <h3>Go Fish
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <button mat-menu-item [matMenuTriggerFor]="major">Major</button>
+      <button mat-menu-item [matMenuTriggerFor]="uni">University</button>
+      <button mat-menu-item [matMenuTriggerFor]="country">Country</button>
+    <mat-menu #major="matMenu">
+      <button mat-menu-item type="button" (click)="applyMajor('dmet')">DMET</button>
+      <button mat-menu-item type="button" (click)="applyMajor('computerscience')">Computer Science</button>
+    </mat-menu>
+    <mat-menu #uni="matMenu">
+      <button mat-menu-item (click)="applyUni('guc')">GUC</button>
+      <button mat-menu-item (click)="applyUni('auc')">AUC</button>
+    </mat-menu>
+    <mat-menu #country="matMenu">
+      <button mat-menu-item (click)="applyCountry('germany')">Germany</button>
+      <button mat-menu-item (click)="applyCountry('spain')">Spain</button>
+      <button mat-menu-item (click)="applyCountry('austria')">Austria</button>
+      <button mat-menu-item (click)="applyCountry('france')">France</button>
+      <button mat-menu-item (click)="applyCountry('usa')">USA</button>
+      <button mat-menu-item (click)="applyCountry('canada')">Canada</button>
+    </mat-menu>
+  </div>
+  <button class="b" mat-flat-button (click)="search()" [ngClass]="{'green' : toggle, 'red': !toggle}">Search</button>
+  <div>
+    <mat-chip-list>
+      <mat-chip class="c" *ngIf="tags[0]!='NA'" color="accent" selected>{{ this.tags[0] }}</mat-chip>
+      <mat-chip class="c" *ngIf="tags[1]!='NA'" color="accent" selected>{{ this.tags[1] }}</mat-chip>
+      <mat-chip class="c" *ngIf="tags[2]!='NA'" color="accent" selected>{{ this.tags[2] }}</mat-chip>
+    </mat-chip-list>
+  </div>
+  <section class="content search">
+  <div class="container-fluid">
+    <div class="row clearfix">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor="let user of users">
+        <div class="card member-card">
+          <div class="body">
+            <div class="col-12">
+              <small>{{user.name}}
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul *ngIf="totPages>1" class="pagination pagination-primary">
+        <li *ngIf="currPage>1" class="page-item">
+          <a class="page-link" (click)="changePage(this.currPage - 1)">PREVIOUS</a>
+        </li>
+        <li *ngFor="let pageNumberForPagination of getPaginationRange()" [ngClass]="{'page-item': true,'active': currPage === pageNumberForPagination}">
+          <a class="page-link" (click)="changePage(pageNumberForPagination)">{{ pageNumberForPagination }}</a>
+        </li>
+        <li *ngIf="currPage<totalNumberOfPages" class="page-item">
+          <a class="page-link" (click)="changePage(this.currPage + 1)">NEXT</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

@@ -6,9 +6,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class SearchService {
   constructor(private http: HttpClient) { }
 // searching for users with the specified tags
-  getUsers(tags: string[]): Observable<any> {
+  getUsers(tags: string[], curr: Number, pp: Number): Observable<any> {
 
-    return this.http.get<any>(`http://localhost:4200/Search/` + tags[0] + '/' + tags[1] + '/'  + tags[2]);
+    return this.http.get<any>(`http://localhost:3000/search/` + tags[0] + '/' + tags[1] + '/'  + tags[2] + '/' + curr + '/' + pp);
   }
 // to be done
 // viewing the profile clicked on

@@ -44,7 +44,8 @@ module.exports.register = function(req, res, next) {
 
 
   // Check that password matches confirmPassword
-  if (password !== req.body.confirmPassword.trim()) {
+  var confirmPassword= req.body.confirmPassword.trim();
+  if (password !== confirmPassword) {
     return res.status(422).json({
       err: null,
       msg: 'password and confirmPassword does not match.',
@@ -61,13 +62,12 @@ module.exports.register = function(req, res, next) {
   }
 
 
- var majors= ["computerscience","dmet","businessinformatics","appliedarts","management","electronics","law","pharmacy","communication","networks","mechatronics","production","material"]
-
+ var majors= ["computerscience","dmet","businessinformatics","appliedarts","management","electronics","law","pharmacy","communication","networks","mechatronics","production","material"];
   if(!majors.includes(req.body.major.toLowerCase().trim())){
     return res.status(422).json({
       err: null,
       msg: 'major must be from this list [computerscience,dmet,businessinformatics,appliedarts,management,electronics,law,pharmacy,communication,networks,mechatronics,production,material]',
-      data: null
+      data: req.body.major
     });
   }
 

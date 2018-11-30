@@ -2,21 +2,26 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {environment } from '../../environments/environment'
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 @Injectable({
     providedIn: 'root'
   })
 
   export class AuthService {
     constructor(private http: HttpClient, private router: Router) {
+      const helper = new JwtHelperService();
+
     }
 
    public   signup(data){
+     var major=(""+data.major).toLocaleLowerCase().trim().split(" ").join("");
     let signUp={
      name:data.name,
      email:data.email.trim(),
      password:data.password.trim(),
      confirmPassword:data.confirmPassword.trim(),
-     major:data.major,
+     major:major,
      bachCountry:"",
      bachUni:"",
      info:""
@@ -34,12 +39,12 @@ import {environment } from '../../environments/environment'
     public logout() {
         localStorage.removeItem('userToken');
         //to do navigate to home 
-        this.router.navigateByUrl("/")
+        this.router.navigateByUrl('/home');
       }
 
 
     public getToken(): string {
-        return localStorage.getItem('userToken');
+        return JSON.stringify(localStorage.getItem('userToken'));
       }
 
 
@@ -47,10 +52,11 @@ import {environment } from '../../environments/environment'
      //check if user logged in
     public isAuthenticated() {
         // get the token
-        const token = this.getToken();
+        const token = localStorage.getItem('userToken');
+       
         // return a boolean reflecting 
         // whether or not the token is expired
-        return token !== undefined && token !== null;
+        return token != undefined && token != null;
       }
 
 
@@ -60,5 +66,20 @@ import {environment } from '../../environments/environment'
           this.router.navigateByUrl(route);
         }
       }
-    
+      public getUserFromToken(token: any) {
+        let payload;
+        if (token) {
+          payload = token.split('.')[1];
+          payload = window.atob(payload);
+          return JSON.parse(payload).user;
+        } else {
+          return null;
+        }
+      }
+      public getCurrentUser() {
+        return this.getUserFromToken(this.getToken());
+      }
+    public getUserName(){
+      return this.getCurrentUser().name;
+    }
   }

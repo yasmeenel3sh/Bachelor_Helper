@@ -2,7 +2,7 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box}
 
-.newSignupForm{
+.loginForm{
     background: white;
     width:75%;
     padding: 10px;;
