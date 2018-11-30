@@ -6,6 +6,34 @@ var mongoose = require('mongoose'),
  
  
   User = mongoose.model('User');
+  module.exports.getUser = function (req, res, next)  {
+      if (!Validations.isObjectId(req.params._id)) {
+        return res.status(422).json({
+          err: null,
+          msg: 'userId parameter must be a valid ObjectId.',
+          data: null
+        });
+      }
+     
+      User.findById(req.params._id).exec(function (err, user) {
+        if (err) {
+          return next(err);
+        }
+        if (!user) {
+          return res
+            .status(404)
+            .json({ err: null, msg: 'user not found.', data: null });
+        }
+        res.status(200).json({
+          err: null,
+          msg: 'user retrieved successfully.',
+          data: user
+        });
+       
+      });
+    };
+    
+  
   
   module.exports.updateUser = function (req, res, next) {
 
@@ -30,14 +58,16 @@ var mongoose = require('mongoose'),
       });
     }
   
-    const set = {
+    let set = {
       name: req.body.name,
-      password:req.body.password,
       major:req.body.major,
-      country:req.body.bachCountry,
+      bachCountry:req.body.bachCountry,
+      bachUni:req.body.bachUni,
       bachYear: req.body.bachYear,
       info: req.body.info
     };
+    console.log(set);
+    
   //here is the main functionality
     User.findByIdAndUpdate(
       req.decodedToken.user._id, {
@@ -65,6 +95,7 @@ var mongoose = require('mongoose'),
           msg: 'Information is Updated!',
           data: updateUser
         });
+        console.log(updateUser);
       }
     });
   };
