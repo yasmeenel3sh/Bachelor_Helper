@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 // import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SearchComponent } from './search/search.component';
-import { LoginComponent } from './login/login.component'
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: '', component: AppComponent },
