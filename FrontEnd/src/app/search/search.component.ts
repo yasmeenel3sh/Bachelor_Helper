@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatCardModule} from '@angular/material/card';
 import { SearchService } from './search.service';
 import { User } from './user';
 // import { PageEvent, MatPaginator } from '@angular/material';

@@ -15,7 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
-
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,8 @@ import { MatMenuModule } from '@angular/material/menu';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatChipsModule
+    MatChipsModule,
+    MatCardModule
   ],
   providers: [
     RegisterService,
