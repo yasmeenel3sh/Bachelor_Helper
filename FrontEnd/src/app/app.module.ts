@@ -8,7 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { RegisterService } from './register/register.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { UserProfileComponent } from './user-profile/user-profile.component';
+ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SearchComponent } from './search/search.component';
 import { SearchService } from './search/search.service';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
@@ -16,12 +16,13 @@ import { MatChipsModule } from '@angular/material/chips';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     DashboardComponent,
-   // UserProfileComponent,
+    UserProfileComponent,
     SearchComponent,
     LoginComponent,
     NavbarComponent
