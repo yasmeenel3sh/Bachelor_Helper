@@ -1,0 +1,15 @@
+.b {
+    background-color: whitesmoke;
+    color: rgb(175, 76, 125);
+    padding: 14px 20px;
+    margin: 8px 100;
+    margin-inline-start:  8px 100;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    opacity: 0.9;
+}
+.c {
+    background-color: whitesmoke;
+    color: rgb(175, 76, 125);
+}

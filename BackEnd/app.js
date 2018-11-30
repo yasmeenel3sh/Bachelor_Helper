@@ -98,7 +98,7 @@ app.use(
 app.use('/api', routes);
 
 // Static Public Folder
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
 
 // Middleware to handle any (500 Internal server error) that may occur while doing database related functions
 app.use(function (err, req, res, next) {
@@ -119,10 +119,10 @@ app.use(function (req, res) {
 
     res.status(404).json({
         err: null,
-        msg: '404 Not Found',
+        msg: '404 Not Found YOLLO',
         data: null
     });
-    res.sendFile(__dirname + '/public/index.html');
+    //res.sendFile(__dirname + '/public/index.html');
 
 });
 
