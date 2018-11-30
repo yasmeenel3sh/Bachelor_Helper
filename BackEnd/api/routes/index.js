@@ -12,6 +12,7 @@ router.post('/auth/register', mw.isNotAuthenticated, authCtrl.register);
 router.post('/auth/login', mw.isNotAuthenticated, authCtrl.login);
 //--------------------------user Routes---------------------------//
 router.patch('/user/update',mw.isAuthenticated, UserController.updateUser);
+router.post('/user/mail', mw.isAuthenticated, UserController.sendMail);
   // --------------------- Search Contoller -------------------- //
 router.get('/search/:country/:university/:major/:curr/:pp', SearchController.Search);
   // --------------------- End of Search Controller ------------ //

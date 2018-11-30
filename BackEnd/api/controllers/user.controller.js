@@ -68,3 +68,27 @@ var mongoose = require('mongoose'),
       }
     });
   };
+
+var nodemailer = require('nodemailer');
+
+module.exports.sendMail = function (req, res, next) {
+
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+  });
+  
+  var mailOptions = {
+    from: req.body.from,
+    to: req.body.to,
+    subject: req.body.subject,
+    text: req.body.text
+  };
+  
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+}
