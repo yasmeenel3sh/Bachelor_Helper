@@ -14,22 +14,41 @@
        </div>
      <div class="form-group">
        <label for="name"><b>Name</b></label>
-       <input type="text"  placeholder="Enter your name" #name="ngModel" name="name" ngModel  required>
+       <input type="text"  placeholder="Enter your name"  #name="ngModel" name="name" ngModel  required>
+
       </div>
       <div class="form-group">
         <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter your email" #email="ngModel" ngModel  name="email" required>
+        <input type="text" placeholder="Enter your email" #email="ngModel" ngModel  name="email" pattern="^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$" required>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+        Must be a gmail Ex:XXXXX@gmail.com
+     </div>
       </div>
       <div class="form-group">
         <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter a password" name="password" placeholder="Enter Password" #password="ngModel" ngModel required>
+        <input type="password" placeholder="Enter a password" name="password" placeholder="Enter Password" #password="ngModel" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$" ngModel required>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+          Min 8 chars and Max 12 chars,
+          At least 1 Uppercase,
+          At least 1 Lowercase,
+          At least 1 Number
+     </div>
       </div>
       <div class="form-group">
           <label for="psw"><b>Confirm Password</b></label>
           <input type="password" placeholder="Enter a password" name="confirmPassword" placeholder="Confirm Password" #confirmPassword="ngModel" ngModel required>
         </div>
-        <label for="major"><b>Major</b></label>
-        <input type="text" placeholder="Enter your major" name="major"#major="ngModel" ngModel required>
+       
+                      
+        <div class="form-group">
+            <label for="major">Major</label>
+            
+            <select class="form-control options" [(ngModel)]="majordef"  name="major" #major="ngModel" ngModel  required>
+                <option *ngFor="let major of majors" [value]="major" >{{major}}</option>
+             
+            </select>
+           
+          </div>
          <!--all the above inputs were required-->
        
         
@@ -37,8 +56,9 @@
 
 
     <div class="clearfix">
-      <button type="button" class="cancelbtn">Cancel</button>
-      <button type="submit" class="signupbtn">Sign Up</button>
+        <button type="submit" class="signupbtn">Sign Up</button>
+      <button type="button" class="cancelbtn" (click)="cancel()">Cancel</button>
+     
     </div>
  
 </form>
@@ -46,4 +66,5 @@
 </fieldset>
     </div>
   </div>
-  {{signUp.value | json}}
+
+  {{signUpForm.value | json}}
