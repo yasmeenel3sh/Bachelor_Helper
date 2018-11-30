@@ -24,6 +24,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
      major:major,
      bachCountry:"",
      bachUni:"",
+     bachYear:"",
      info:""
     }
     return this.http.post(environment.domain+'auth/register', signUp);

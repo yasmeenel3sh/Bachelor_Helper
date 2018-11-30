@@ -37,6 +37,9 @@ const UserSchema = new mongoose.Schema({
     bachUni:{
         type:String
     },
+    bachYear:{
+        type:String
+    },
     info:{
         type:String
     }

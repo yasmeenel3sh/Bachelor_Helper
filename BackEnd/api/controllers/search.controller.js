@@ -24,11 +24,8 @@ module.exports.Search = function (req, res, next) {
   var toFind = {};
   toFind = find(req);
  
-  User.paginate(
-    toFind, {
-      limit: Number(req.params.pp),
-      page: Number(req.params.curr)
-    },
+  User.find(
+    toFind,
     function (err, users) {
       if (err) {
         console.log("NO NO NO");

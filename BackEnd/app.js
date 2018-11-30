@@ -5,6 +5,7 @@ var express = require('express'),
     logger = require('morgan'),
     cors = require('cors'),
     path = require('path'),
+    nodemailer = require('nodemailer'),
     helmet = require('helmet'),
     passport = require('passport'),
     compression = require('compression'),
@@ -23,7 +24,6 @@ app.set('secret', config.SECRET);
 
 // app.io = require('socket.io')();
 // socketIO(app.io);
-
 // Middleware for uploading binary files
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -122,7 +122,7 @@ app.use(function (req, res) {
         msg: '404 Not Found YOLLO',
         data: null
     });
-    //res.sendFile(__dirname + '/public/index.html');
+    res.sendFile(__dirname + '/public/index.html');
 
 });
 

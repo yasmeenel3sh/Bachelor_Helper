@@ -11,3 +11,8 @@ module.exports = {
             : 'mongodb://localhost:27017/Bachelor_Helper',
     EMAIL_REGEX: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 };
+var mongoosePaginate = require('mongoose-paginate');
+mongoosePaginate.paginate.options = {
+    lean: true,
+    limit: 20
+}
