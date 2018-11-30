@@ -14,9 +14,8 @@ router.post('/auth/login', mw.isNotAuthenticated, authCtrl.login);
 router.patch('/user/update',mw.isAuthenticated, UserController.updateUser);
   // --------------------- Search Contoller -------------------- //
 router.get('/search/:country/:university/:major/:curr/:pp', SearchController.Search);
+
   // --------------------- End of Search Controller ------------ //
-
-
 
 
 module.exports = router;
