@@ -19,7 +19,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     AppComponent,
     RegisterComponent,
     DashboardComponent,
-   // UserProfileComponent,
+   UserProfileComponent,
     SearchComponent,
     LoginComponent,
     NavbarComponent
