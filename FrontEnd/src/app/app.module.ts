@@ -33,6 +33,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatMenuModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     MatChipsModule
   ],
