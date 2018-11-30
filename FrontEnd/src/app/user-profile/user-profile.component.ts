@@ -17,8 +17,9 @@ import { environment } from '../../environments/environment';
 
 export class UserProfileComponent implements OnInit {
   // we get the user by id in here
-   updatedUser: UserDTO;
+ 
   currentUser;
+  isRetrieved:boolean;
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -31,7 +32,7 @@ export class UserProfileComponent implements OnInit {
 
   formData: FormGroup = this.formBuilder.group({
     name: ['usr', [Validators.required]],
-    bachCountry: ['egy', [Validators.required]],
+    bachCountry: ['egy'],
     bachYear: ['2016'],
     bachUni: ['guc'],
     major: ['met'],
@@ -43,15 +44,24 @@ export class UserProfileComponent implements OnInit {
 
   constructor(private http: HttpClient, private auth: AuthService,
      private formBuilder: FormBuilder, private reactiveFormModule: ReactiveFormsModule) {
-     this.updatedUser = new UserDTO();
+     
 
   }
 
   ngOnInit() {
     // get the userDTo here from the data base
-    this.currentUser = this.auth.getCurrentUser();
+     this.isRetrieved=false;
+     this.http.get<any>(environment.domain+'user/'+this.auth.getCurrentUser()._id)
+     .subscribe((res: any) => {
+      this.currentUser=res.data;
+      this.isRetrieved=true;
+      console.log(res.data);
+     
+    }, err => {
+     console.log(err);
+    });
 
-    console.log(this.currentUser);
+   
 
   }
   initialize(): void {
@@ -74,19 +84,30 @@ export class UserProfileComponent implements OnInit {
   // submit the user data edited to the db with the id
   // take the data from the form inside the userDTO to send todb
   onSubmit(): void {
-    this.updatedUser.name = this.formData.controls.name.value;
-    this.updatedUser.bachYear = this.formData.controls.bachyear.value;
-    this.updatedUser.bachUni = this.formData.controls.bachUni.value;
-    this.updatedUser.bachCountry = this.formData.controls.bachCountry.value;
-    this.updatedUser.major = this.formData.controls.major.value;
-    this.updatedUser.info = this.formData.controls.info.value;
+    
+    // this.updatedUser.name = this.formData.controls.name.value;
+    // this.updatedUser.bachYear = this.formData.controls.bachYear.value;
+    // this.updatedUser.bachUni = this.formData.controls.bachUni.value;
+    // this.updatedUser.bachCountry = this.formData.controls.bachCountry.value;
+    // this.updatedUser.major = this.formData.controls.major.value;
+    // this.updatedUser.info = this.formData.controls.info.value;
     // here is the service that updates a user
+    let updatedUser={
+      name : this.formData.controls.name.value,
+     bachYear : this.formData.controls.bachYear.value,
+     bachUni : this.formData.controls.bachUni.value,
+      bachCountry :this.formData.controls.bachCountry.value,
+     major : this.formData.controls.major.value,
+      info : this.formData.controls.info.value
+    }
 
-
-    this.http.patch(environment.domain + 'user/update', this.currentUser, this.httpOptions)
+   
+    this.http.patch(environment.domain + 'user/update', updatedUser, this.httpOptions)
       .subscribe((data: any) => {
         this.editProfile = false;
         console.log(data);
+
+        this.ngOnInit();
       }, (err: any) => {
         console.log(err);
       });
