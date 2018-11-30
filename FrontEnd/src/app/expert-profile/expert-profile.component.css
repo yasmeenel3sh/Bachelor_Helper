@@ -1,0 +1,29 @@
+
+
+html,body,h1,h2,h3,h4,h5 {font-family: "RobotoDraft", "Roboto", sans-serif}
+.w3-bar-block .w3-bar-item {padding: 16px}
+
+
+form.double {border-style: double;}
+
+p.double{border-style: double;}
+
+button.cs{
+    margin-left:50px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 28Spx;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+div.double{
+    border-style: double;
+}
+label.line {
+    text-decoration: underline;
+}

@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
  import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
+import {ExpertProfileComponent} from './expert-profile/expert-profile.component'
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: 'profile', component: UserProfileComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'expertProfile', component: ExpertProfileComponent },
   { path: '**', redirectTo: 'home' }
 ];
 

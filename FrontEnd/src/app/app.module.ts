@@ -16,6 +16,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
+import { ExpertProfileComponent } from './expert-profile/expert-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import {MatCardModule} from '@angular/material/card';
     UserProfileComponent,
     SearchComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    ExpertProfileComponent
   ],
   imports: [
     BrowserModule,
