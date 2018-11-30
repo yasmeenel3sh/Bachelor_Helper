@@ -20,37 +20,37 @@
       <label class="line" style="margin-bottom:30px;margin-left:30px;">MY Bachelor Abroad related information :</label><br><br>
 
       <label  style="margin-left:30px;">Name :</label>
-    <label *ngIf="!editProfile" style="margin-left:80px;">{{currentUser.name}}</label>
+    <label *ngIf="!editProfile && isRetrieved" style="margin-left:80px;">{{currentUser.name}}</label>
     <input *ngIf="editProfile" type="text"formControlName="name"
     placeholder="name" style="margin-left:30px;margin-top:30px;"><br><br>
     
     <label  style="margin-left:30px;">Major :</label>
-    <label *ngIf="!editProfile" style="margin-left:80px;">{{currentUser.major}}</label>
+    <label *ngIf="!editProfile && isRetrieved" style="margin-left:80px;">{{currentUser.major}}</label>
     <input *ngIf="editProfile" type="text" formControlName="major"
     placeholder="major" style=" margin-left:30px;"><br><br>
     
     
     <label  style="margin-left:30px;">University :</label>
-    <label  *ngIf="!editProfile" style="margin-left:80px;">{{currentUser.bachUni}}</label>
-    <input  *ngIf="editProfile" type="text" formControlName="university"
+    <label  *ngIf="!editProfile && isRetrieved" style="margin-left:80px;">{{currentUser.bachUni}}</label>
+    <input  *ngIf="editProfile" type="text" formControlName="bachUni"
     placeholder="university"  style="margin-left:30px;"><br><br>
     
   
     <label  style="margin-left:30px;">Country :</label>
-    <label *ngIf="!editProfile"  style="margin-left:80px;">{{currentUser.bachCountry}}</label>
-    <input  *ngIf="editProfile" type="text" formControlName="country"
+    <label *ngIf="!editProfile && isRetrieved"  style="margin-left:80px;">{{currentUser.bachCountry}}</label>
+    <input  *ngIf="editProfile" type="text" formControlName="bachCountry"
     placeholder="country"  style="margin-left:30px;"><br><br>
     
     
     <label  style="margin-left:30px;">Year :</label>
-    <label *ngIf="!editProfile"  style="margin-left:80px;">{{currentUser.year}}</label>
-    <input  *ngIf="editProfile" type="text" formControlName="year"
+    <label *ngIf="!editProfile && isRetrieved"  style="margin-left:80px;">{{currentUser.year}}</label>
+    <input  *ngIf="editProfile" type="text" formControlName="bachYear"
     placeholder="year"  style="margin-left:30px;"><br><br><br> 
 
-    <p class="double" *ngIf="!editProfile"  style="margin-left:10px;margin-right:10px;">
+    <p class="double" *ngIf="!editProfile && isRetrieved"  style="margin-left:10px;margin-right:10px;">
      {{currentUser.info}} </p><br>
     
-      <textarea style="margin-left:30px;" rows="10" cols="120" *ngIf="editProfile" formControlName="bachDetails" >Enter text here...</textarea><br>
+      <textarea style="margin-left:30px;" rows="10" cols="120" *ngIf="editProfile" formControlName="info" >Enter text here...</textarea><br>
 
       <button class="cs" *ngIf="!editProfile" type="button" (click)='enableEdit()'>Edit  <i class="fa fa-edit"></i></button><br>
     
