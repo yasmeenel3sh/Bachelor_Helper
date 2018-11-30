@@ -75,20 +75,28 @@ module.exports.sendMail = function (req, res, next) {
 
   var transporter = nodemailer.createTransport({
     service: 'gmail',
+    auth: {
+      user:'Bachelor.Helper.GUC@gmail.com',
+      pass:'1olfat2yasmeen3nourhan'
+    }
   });
   
   var mailOptions = {
-    from: req.body.from,
     to: req.body.to,
     subject: req.body.subject,
-    text: req.body.text
+    text: 'Sent from: ' + req.body.from + '\n' + req.body.text
   };
   
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
       console.log(error);
+      return next(err);
     } else {
-      console.log('Email sent: ' + info.response);
+      res.status(200).json({
+        err: null,
+        msg: 'Email is Sent!',
+        data: null
+      });
     }
   });
 }
