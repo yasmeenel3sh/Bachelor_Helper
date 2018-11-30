@@ -122,7 +122,7 @@ app.use(function (req, res) {
         msg: '404 Not Found YOLLO',
         data: null
     });
-    res.sendFile(__dirname + '/public/index.html');
+  //  res.sendFile(__dirname + '/public/index.html');
 
 });
 
