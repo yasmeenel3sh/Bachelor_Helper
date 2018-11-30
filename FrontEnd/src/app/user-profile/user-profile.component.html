@@ -10,7 +10,7 @@
 <body>
   
 <!-- Page content -->
-<!-- <div class="w3-main" >
+<div class="w3-main" >
 <div id="Borge" class="w3-container person">
   <br>
   <img class="w3-round  w3-animate-top" src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX11726894.jpg" style="width:30%;">
@@ -20,60 +20,45 @@
       <label class="line" style="margin-bottom:30px;margin-left:30px;">MY Bachelor Abroad related information :</label><br><br>
 
       <label  style="margin-left:30px;">Name :</label>
-    <label *ngIf="!editProfile" style="margin-left:80px;">Ahmed Alaa</label>
-    <input *ngIf="editProfile" type="text"formControlName="userName"
+    <label *ngIf="!editProfile" style="margin-left:80px;">{{currentUser.name}}</label>
+    <input *ngIf="editProfile" type="text"formControlName="name"
     placeholder="name" style="margin-left:30px;margin-top:30px;"><br><br>
     
     <label  style="margin-left:30px;">Major :</label>
-    <label *ngIf="!editProfile" style="margin-left:80px;">MET-CS</label>
+    <label *ngIf="!editProfile" style="margin-left:80px;">{{currentUser.major}}</label>
     <input *ngIf="editProfile" type="text" formControlName="major"
     placeholder="major" style=" margin-left:30px;"><br><br>
     
     
     <label  style="margin-left:30px;">University :</label>
-    <label  *ngIf="!editProfile" style="margin-left:80px;">GUC</label>
+    <label  *ngIf="!editProfile" style="margin-left:80px;">{{currentUser.university}}</label>
     <input  *ngIf="editProfile" type="text" formControlName="university"
     placeholder="university"  style="margin-left:30px;"><br><br>
     
   
     <label  style="margin-left:30px;">Country :</label>
-    <label *ngIf="!editProfile"  style="margin-left:80px;">BERLIN</label>
+    <label *ngIf="!editProfile"  style="margin-left:80px;">{{currentUser.country}}</label>
     <input  *ngIf="editProfile" type="text" formControlName="country"
     placeholder="country"  style="margin-left:30px;"><br><br>
     
     
     <label  style="margin-left:30px;">Year :</label>
-    <label *ngIf="!editProfile"  style="margin-left:80px;">2018</label>
+    <label *ngIf="!editProfile"  style="margin-left:80px;">{{currentUser.year}}</label>
     <input  *ngIf="editProfile" type="text" formControlName="year"
-    placeholder="year"  style="margin-left:30px;"><br><br><br> -->
+    placeholder="year"  style="margin-left:30px;"><br><br><br> 
+
+    <p class="double" *ngIf="!editProfile"  style="margin-left:10px;margin-right:10px;">
+     {{currentUser.bachDetails}} </p><br>
     
-     <!-- <input *ngIf="editProfile" type="submit" value="Submit"><br> -->
-     <button *ngIf="!editProfile" type="button" (click)='enableEdit()'>Edit My Profile information</button>
-     <button *ngIf="editProfile"  type="submit" class="btn" [disabled]="formData.invalid">
-        submitMydata
-      </button>
+      <textarea style="margin-left:30px;" rows="10" cols="120" *ngIf="editProfile" formControlName="bachDetails" >Enter text here...</textarea><br>
 
-  <p style="margin-left:30px;">
-      What's the best way to introduce yourself at a job interview? How can you start off an interview making the best possible impression? First, impressions can play a major role in how an employer perceives you as a candidate. What you say 
-      during the first phase of the interview may make a big difference in the outcome 
-      – in a good way or in a bad way. You don't want to come across as awkward and lacking 
-       social skills. Rather, you'll want to show that you have the professionalism and 
-       communication skills to find success in the new job, if you were to be hired.
-
-      Some hiring managers may even make a decision to reject a candidate based on what
-       they didn't do when they met them. For instance, if you have a tendency 
-       to be late or to check your phone frequently, you’ll want to curb those
-        habits before a job interview. The hiring manager may perceive your behavior
-         as an inability to make a commitment and follow through – not qualities that
-          will endear you to a prospective employer. Little things make a big difference
-           at this stage of a job search. That's why it's important to pay attention to
-            interview manners and to carefully 
-      think through how you will introduce yourself during the job interview. </p>
-  
+      <button class="cs" *ngIf="!editProfile" type="button" (click)='enableEdit()'>Edit  <i class="fa fa-edit"></i></button><br>
+    
+      <button class="cs" *ngIf="editProfile"  type="submit"  [disabled]="formData.invalid">save <i class="fa fa-save"> </i></button><br><br>
   </form>
   
     
 </div>
-</div> -->
+</div> 
 </body>
 </html> 

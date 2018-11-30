@@ -12,6 +12,7 @@ import { SearchComponent } from './search/search.component';
 import { SearchService } from './search/search.service';
 import {  HttpClientModule } from '../../node_modules/@angular/common/http';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,8 @@ import {  HttpClientModule } from '../../node_modules/@angular/common/http';
     DashboardComponent,
     UserProfileComponent,
     SearchComponent,
-   
+    
+
   ],
   imports: [
     BrowserModule,
