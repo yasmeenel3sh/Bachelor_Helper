@@ -7,9 +7,9 @@
     </div>
   </div>
   <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-      <button mat-menu-item [matMenuTriggerFor]="major">Major</button>
-      <button mat-menu-item [matMenuTriggerFor]="uni">University</button>
-      <button mat-menu-item [matMenuTriggerFor]="country">Country</button>
+      <button mat-button [matMenuTriggerFor]="major">Major</button>
+      <button mat-button [matMenuTriggerFor]="uni">University</button>
+      <button mat-button [matMenuTriggerFor]="country">Country</button>
     <mat-menu #major="matMenu">
       <button mat-menu-item type="button" (click)="applyMajor('dmet')">DMET</button>
       <button mat-menu-item type="button" (click)="applyMajor('computerscience')">Computer Science</button>
@@ -55,7 +55,7 @@
         <li *ngFor="let pageNumberForPagination of getPaginationRange()" [ngClass]="{'page-item': true,'active': currPage === pageNumberForPagination}">
           <a class="page-link" (click)="changePage(pageNumberForPagination)">{{ pageNumberForPagination }}</a>
         </li>
-        <li *ngIf="currPage<totalNumberOfPages" class="page-item">
+        <li *ngIf="currPage < totalNumberOfPages" class="page-item">
           <a class="page-link" (click)="changePage(this.currPage + 1)">NEXT</a>
         </li>
       </ul>
