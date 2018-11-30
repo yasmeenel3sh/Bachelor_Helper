@@ -20,6 +20,10 @@ export class UserProfileComponent implements OnInit {
  
   currentUser;
   isRetrieved:boolean;
+  majors=["Computer Science","Dmet","Business Informatics","Applied Arts",
+  "Management","Electronics","Law","Pharmacy","Communication","Networks",
+  "Mechatronics","Production","Material"];
+  countries=["Germany","USA","England","Egypt","Switzerland","Canada","Japan","Autsralia"];
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -76,6 +80,7 @@ export class UserProfileComponent implements OnInit {
 
   // copy the user data in the form .
   enableEdit(): void {
+    console.log(this.currentUser);
     this.editProfile = true;
     this.initialize();
 
@@ -101,7 +106,7 @@ export class UserProfileComponent implements OnInit {
       info : this.formData.controls.info.value
     }
 
-   
+   console.log(this.formData.controls.major.value);
     this.http.patch(environment.domain + 'user/update', updatedUser, this.httpOptions)
       .subscribe((data: any) => {
         this.editProfile = false;

@@ -9,11 +9,11 @@ form.double {border-style: double;}
 p.double{border-style: double;}
 
 button.cs{
-    margin-left:50px;
+    margin-left: 50px;
     background-color: #4CAF50;
     border: none;
     color: white;
-    padding: 15px 28Spx;
+    padding: 15px 28px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
