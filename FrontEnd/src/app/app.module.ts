@@ -13,13 +13,16 @@ import { SearchService } from './search/search.service';
 import {  HttpClientModule } from '../../node_modules/@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import {MatChipsModule} from '@angular/material/chips';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     DashboardComponent,
-   UserProfileComponent,
+    UserProfileComponent,
     SearchComponent,
     LoginComponent,
     NavbarComponent
@@ -27,9 +30,11 @@ import { NavbarComponent } from './navbar/navbar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatMenuModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatChipsModule
   ],
   providers: [
     RegisterService,
