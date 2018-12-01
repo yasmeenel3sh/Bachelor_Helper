@@ -17,13 +17,22 @@ import { environment } from '../../environments/environment';
 
 export class UserProfileComponent implements OnInit {
   // we get the user by id in here
- 
+  successMsg:string;
+  errorMsg:string;
+
+  error :boolean=false;
+  success:boolean=false;
+
   currentUser;
   isRetrieved:boolean;
+  
+
   majors=["Computer Science","Dmet","Business Informatics","Applied Arts",
   "Management","Electronics","Law","Pharmacy","Communication","Networks",
   "Mechatronics","Production","Material"];
+
   countries=["Germany","USA","England","Egypt","Switzerland","Canada","Japan","Autsralia"];
+ 
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -35,12 +44,12 @@ export class UserProfileComponent implements OnInit {
 
 
   formData: FormGroup = this.formBuilder.group({
-    name: ['usr', [Validators.required]],
-    bachCountry: ['egy'],
-    bachYear: ['2016'],
-    bachUni: ['guc'],
-    major: ['met'],
-    info: ['  ']
+    name: [null,[Validators.maxLength(10)]],
+    bachCountry: [null],
+    bachYear: [null],
+    bachUni: [null],
+    major: [null],
+    info: [null]
 
   });
 
@@ -63,6 +72,9 @@ export class UserProfileComponent implements OnInit {
      
     }, err => {
      console.log(err);
+     this.errorMsg=err.error.msg;
+     this.error=true;
+
     });
 
    
@@ -80,6 +92,8 @@ export class UserProfileComponent implements OnInit {
 
   // copy the user data in the form .
   enableEdit(): void {
+    this.success=false;
+    this.error=false;
     console.log(this.currentUser);
     this.editProfile = true;
     this.initialize();
@@ -110,11 +124,15 @@ export class UserProfileComponent implements OnInit {
     this.http.patch(environment.domain + 'user/update', updatedUser, this.httpOptions)
       .subscribe((data: any) => {
         this.editProfile = false;
+        this.error=false;
         console.log(data);
-
+        this.successMsg=data.msg;
+        this.success=true;
         this.ngOnInit();
       }, (err: any) => {
         console.log(err);
+        this.errorMsg=err.error.msg;
+        this.error=true;
       });
 
   }

@@ -15,6 +15,15 @@
   <br>
   <img class="w3-round  w3-animate-top" src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX11726894.jpg" style="width:30%;">
   
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{errorMsg}}
+   </div>
+
+   <div *ngIf="success" class="alert alert-success" role="alert">
+    {{successMsg}}
+  </div>
+
   <form class="double" [formGroup]="formData" (ngSubmit)="onSubmit()">
 
       <label class="line" style="margin-bottom:30px;margin-left:30px;">MY Bachelor Abroad related information :</label><br><br>
@@ -22,7 +31,7 @@
       <label  style="margin-left:30px;">Name :</label>
     <label *ngIf="!editProfile && isRetrieved" style="margin-left:80px;">{{currentUser.name}}</label>
     <input *ngIf="editProfile" type="text"formControlName="name"
-    placeholder="name" style="margin-left:30px;margin-top:30px;"><br><br>
+     placeholder="name" style="margin-left:30px;margin-top:30px;"><br><br>
     
      <label  style="margin-left:30px;">Major :</label>
     <label *ngIf="!editProfile && isRetrieved" style="margin-left:80px;">{{currentUser.major}}</label>
@@ -47,11 +56,7 @@
     </select>
   
   <br><br>
-
-    <!-- <input  *ngIf="editProfile" type="text" formControlName="bachCountry"
-    placeholder="country"  style="margin-left:30px;"><br><br> -->
-    
-    
+  
     <label  style="margin-left:30px;">Year :</label>
     <label *ngIf="!editProfile && isRetrieved"  style="margin-left:80px;">{{currentUser.year}}</label>
     <input  *ngIf="editProfile" type="text" formControlName="bachYear"
@@ -65,7 +70,8 @@
       <button style="margin-left:30px;" class="cs" *ngIf="!editProfile" type="button" (click)='enableEdit()'>Edit  <i class="fa fa-edit"></i></button><br>
     
       <button style="margin-left:30px;" class="cs" *ngIf="editProfile"  type="submit"  [disabled]="formData.invalid">save <i class="fa fa-save"> </i></button><br><br>
-  </form>
+  
+    </form>
   
     
 </div>
