@@ -16,16 +16,18 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+ 
   login(form){
     this.auth.login(form.value.email.trim(),form.value.password).subscribe((data : any)=>{
       localStorage.setItem('userToken',data.data);
-      this.router.navigate(['home']);
-     //window.location.reload();
+      this.router.navigate(['/home']).then();
+     // window.location.reload();
+      
     },
   (err :any)=>{
     this.errorMsg=err.error.msg;
     this.error=true;
- console.log(err);
+    console.log(err);
   });
    
   }

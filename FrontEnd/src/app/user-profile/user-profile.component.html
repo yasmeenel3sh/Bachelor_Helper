@@ -11,10 +11,15 @@
    
 <!-- Page content -->
 <div class="w3-main" >
+  <h1>Upload your profile image</h1>
+  <input type="file" (change)="onFileSelected($event)">
+  <button (click)="onUpload()">Upload </button>
+  
 <div id="Borge" class="w3-container person">
   <br>
+
   <img class="w3-round  w3-animate-top" src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX11726894.jpg" style="width:30%;">
-  
+   
 
   <div *ngIf="error" class="alert alert-danger">
     {{errorMsg}}
