@@ -49,7 +49,7 @@ module.exports = {
  -docker-compose up  if running already built images
 
   -if on linux go to http://localhost:4200
-  -if on virtual machine windows http://192.168.99.100:3000:4200
+  -if on virtual machine windows http://192.168.99.100:4200
 ```
  **Running Locally**
  <h1 align="center">  Bachelor Helper </h1>
