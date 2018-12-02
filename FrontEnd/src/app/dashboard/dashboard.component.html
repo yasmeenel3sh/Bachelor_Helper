@@ -52,7 +52,7 @@
   </div>
 
   <div class="container text-center">
-    <h3>Search for bachelors</h3><br>
+    <h3 class='u'>Search for bachelors</h3><br>
     <hr>
     <form class="f1">
       <h4>Countries</h4>
@@ -88,7 +88,7 @@
       </mat-form-field>
     </form>
     
-    <button class="b" mat-flat-button (click)="search()" [ngClass]="{'green' : toggle, 'red': !toggle}">Search</button>
+    <button class="cs" mat-flat-button (click)="search()" [ngClass]="{'green' : toggle, 'red': !toggle}">Search</button>
     <hr>
     <li *ngFor="let user of users">
       <mat-card class="example-card">
@@ -99,7 +99,7 @@
           </div>
           <mat-card-title>
             {{user.name}}
-            <button (click)="goToProfile(user._id)">View Profile</button>
+            <button  class ='cs' (click)="goToProfile(user._id)">View Profile</button>
           </mat-card-title>
         </mat-card-header>
       </mat-card>
