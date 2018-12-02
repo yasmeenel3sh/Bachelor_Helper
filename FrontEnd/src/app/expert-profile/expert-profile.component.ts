@@ -33,11 +33,11 @@ constructor(private http: HttpClient, private auth: AuthService,private route: A
     private formBuilder: FormBuilder, private reactiveFormModule: ReactiveFormsModule) {
 
 this.currentUser=new UserDTO();
-this.currentUser.name="Ahmed";
-this.currentUser.bachCountry="A";
-this.currentUser.bachUni="B";
-this.currentUser.major="met";
-this.currentUser.info="he is a an expert";
+// this.currentUser.name="Ahmed";
+// this.currentUser.bachCountry="A";
+// this.currentUser.bachUni="B";
+// this.currentUser.major="met";
+// this.currentUser.info="he is a an expert";
 
 
 
