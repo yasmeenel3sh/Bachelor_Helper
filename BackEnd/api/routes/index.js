@@ -15,7 +15,7 @@ router.patch('/user/update',mw.isAuthenticated, UserController.updateUser);
 router.post('/user/mail',  UserController.sendMail);
 router.get('/user/:_id',UserController.getUser);
 //here is the route 
-router.patch('/user/updateImage',UserController.updateImage);
+//router.patch('/user/updateImage',UserController.updateImage);
 
   // --------------------- Search Contoller -------------------- //
 router.get('/search/:country/:university/:major/:curr/:pp', SearchController.Search);

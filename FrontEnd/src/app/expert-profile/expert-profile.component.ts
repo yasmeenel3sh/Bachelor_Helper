@@ -16,6 +16,7 @@ export class ExpertProfileComponent implements OnInit {
   sendEmail:boolean;
   loggedIn:boolean;
   isRetrieved:boolean;
+
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -24,8 +25,7 @@ export class ExpertProfileComponent implements OnInit {
   };
 
   formData: FormGroup = this.formBuilder.group({
-    emailBody: [null,[Validators.required]],
-    from:[null,[Validators.required]],
+    text: [null,[Validators.required]],
     subject:[null,[Validators.required]]
 
   });
@@ -34,11 +34,6 @@ constructor(private http: HttpClient, private auth: AuthService,private route: A
     private formBuilder: FormBuilder, private reactiveFormModule: ReactiveFormsModule) {
 
 this.currentUser=new UserDTO();
-// this.currentUser.name="Ahmed";
-// this.currentUser.bachCountry="A";
-// this.currentUser.bachUni="B";
-// this.currentUser.major="met";
-// this.currentUser.info="he is a an expert";
 
 
 
@@ -57,7 +52,6 @@ this.currentUser=new UserDTO();
     this.currentUser=res.data;
     this.isRetrieved=true;
     console.log(res.data);
-   
   }, err => {
    console.log(err);
   });
@@ -68,8 +62,27 @@ this.currentUser=new UserDTO();
   }
 onSubmit(){
   //this should be placed inside the success of the method
-  console.log('here is the email being sent');
-  this.sendEmail=false;
+  let mailObject= {
+      from :this.auth.getCurrentUser().email,
+      to :this.currentUser.email,
+      text : this.formData.controls.text.value,
+      subject :this.formData.controls.subject.value
+  }
+
+
+  this.http.post(environment.domain + 'user/mail', mailObject)
+  .subscribe((data: any) => {
+    console.log(data);
+    this.sendEmail=false;
+
+  }, (err: any) => {
+    console.log(err);
+    
+  });
+  
+ 
+
+
 }
 }
 
