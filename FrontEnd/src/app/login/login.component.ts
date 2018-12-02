@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(form.value.email.trim(),form.value.password).subscribe((data : any)=>{
       localStorage.setItem('userToken',data.data);
       this.router.navigate(['/home']).then();
-     // window.location.reload();
+      window.location.reload();
       
     },
   (err :any)=>{

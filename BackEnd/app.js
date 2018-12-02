@@ -1,3 +1,4 @@
+
 // Execute the mongoDB file to create, define the collections and connect to the database
 require('./api/config/mongoDB');
 
@@ -13,7 +14,6 @@ var express = require('express'),
     routes = require('./api/routes'),
     config = require('./api/config'),
     multer = require('multer'),
-    socketIO = require('./api/socket'),
     app = express();
 
 // Set the secret of the app that will be used in authentication

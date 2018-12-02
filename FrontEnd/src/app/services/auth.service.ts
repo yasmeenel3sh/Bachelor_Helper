@@ -22,6 +22,7 @@ export class AuthService {
       password: data.password.trim(),
       confirmPassword: data.confirmPassword.trim(),
       major: major,
+      photo:"",
       bachCountry: "",
       bachUni: "",
       bachYear: "",

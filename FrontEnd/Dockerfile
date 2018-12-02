@@ -11,8 +11,7 @@ COPY package.json /usr/src/app
 
 # Install dependecies
 RUN npm i -g @angular/cli --no-optional  --no-shrinkwrap --no-package-lock
-RUN npm install --no-optional
-
+Run npm i --no-optional  --no-shrinkwrap --no-package-lock
 # Get all the code needed to run the app
 COPY . /usr/src/app
 
@@ -20,4 +19,5 @@ COPY . /usr/src/app
 EXPOSE 4200
 
 # Serve the app
+CMD ["npm","build"]
 CMD ["npm", "start"]

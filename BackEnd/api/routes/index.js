@@ -5,8 +5,6 @@ var express = require('express'),
     mw = require('./middlewares');
 var UserController =require ('../controllers/user.controller');
 var SearchController = require('../controllers/search.controller');
-const multer =require('multer');
-
 
 //---------------------------- Authentication Routes --------------------------------//
 //router.get('/verify/:id/:token', authCtrl.verifyMail);
