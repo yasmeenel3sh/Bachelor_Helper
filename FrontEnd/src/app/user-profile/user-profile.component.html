@@ -11,10 +11,24 @@
    
 <!-- Page content -->
 <div class="w3-main" >
+  <h1>Upload your profile image</h1>
+  <input type="file" (change)="onFileSelected($event)">
+  <button (click)="onUpload()">Upload </button>
+  
 <div id="Borge" class="w3-container person">
   <br>
+
   <img class="w3-round  w3-animate-top" src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX11726894.jpg" style="width:30%;">
-  
+   
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{errorMsg}}
+   </div>
+
+   <div *ngIf="success" class="alert alert-success" role="alert">
+    {{successMsg}}
+  </div>
+
   <form class="double" [formGroup]="formData" (ngSubmit)="onSubmit()">
 
       <label class="line" style="margin-bottom:30px;margin-left:30px;">MY Bachelor Abroad related information :</label><br><br>
@@ -22,13 +36,16 @@
       <label  style="margin-left:30px;">Name :</label>
     <label *ngIf="!editProfile && isRetrieved" style="margin-left:80px;">{{currentUser.name}}</label>
     <input *ngIf="editProfile" type="text"formControlName="name"
-    placeholder="name" style="margin-left:30px;margin-top:30px;"><br><br>
+     placeholder="name" style="margin-left:30px;margin-top:30px;"><br><br>
     
-    <label  style="margin-left:30px;">Major :</label>
+     <label  style="margin-left:30px;">Major :</label>
     <label *ngIf="!editProfile && isRetrieved" style="margin-left:80px;">{{currentUser.major}}</label>
-    <input *ngIf="editProfile" type="text" formControlName="major"
-    placeholder="major" style=" margin-left:30px;"><br><br>
+
+      <select *ngIf="editProfile" style="margin-left:100px;" formControlName="major">
+        <option   *ngFor="let major of majors" [value]="major" >{{major}}</option>
+      </select>
     
+    <br><br>
     
     <label  style="margin-left:30px;">University :</label>
     <label  *ngIf="!editProfile && isRetrieved" style="margin-left:80px;">{{currentUser.bachUni}}</label>
@@ -38,24 +55,28 @@
   
     <label  style="margin-left:30px;">Country :</label>
     <label *ngIf="!editProfile && isRetrieved"  style="margin-left:80px;">{{currentUser.bachCountry}}</label>
-    <input  *ngIf="editProfile" type="text" formControlName="bachCountry"
-    placeholder="country"  style="margin-left:30px;"><br><br>
-    
-    
+  
+    <select *ngIf="editProfile" style="margin-left:100px;" formControlName="bachCountry">
+      <option   *ngFor="let country of countries" [value]="country" >{{country}}</option>
+    </select>
+  
+  <br><br>
+  
     <label  style="margin-left:30px;">Year :</label>
-    <label *ngIf="!editProfile && isRetrieved"  style="margin-left:80px;">{{currentUser.year}}</label>
+    <label *ngIf="!editProfile && isRetrieved"  style="margin-left:80px;">{{currentUser.bachYear}}</label>
     <input  *ngIf="editProfile" type="text" formControlName="bachYear"
     placeholder="year"  style="margin-left:30px;"><br><br><br> 
 
     <p class="double" *ngIf="!editProfile && isRetrieved"  style="margin-left:10px;margin-right:10px;">
      {{currentUser.info}} </p><br>
     
-      <textarea style="margin-left:30px;" rows="10" cols="120" *ngIf="editProfile" formControlName="info" >Enter text here...</textarea><br>
+      <textarea placeholder="Edit or add your deatailed information here !" style="margin-left:30px;" rows="10" cols="120" *ngIf="editProfile" formControlName="info" >Enter text here...</textarea><br>
 
-      <button class="cs" *ngIf="!editProfile" type="button" (click)='enableEdit()'>Edit  <i class="fa fa-edit"></i></button><br>
+      <button style="margin-left:30px;" class="cs" *ngIf="!editProfile" type="button" (click)='enableEdit()'>Edit  <i class="fa fa-edit"></i></button><br>
     
-      <button class="cs" *ngIf="editProfile"  type="submit"  [disabled]="formData.invalid">save <i class="fa fa-save"> </i></button><br><br>
-  </form>
+      <button style="margin-left:30px;" class="cs" *ngIf="editProfile"  type="submit"  [disabled]="formData.invalid">save <i class="fa fa-save"> </i></button><br><br>
+  
+    </form>
   
     
 </div>
