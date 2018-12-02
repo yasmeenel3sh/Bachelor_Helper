@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'search', component: SearchComponent },
   { path: 'profile', component: UserProfileComponent },
+  { path: 'bprofile/:id', component: ExpertProfileComponent },
   { path: 'login', component: LoginComponent },
   { path: 'expertProfile', component: ExpertProfileComponent },
   { path: '**', redirectTo: 'home' }

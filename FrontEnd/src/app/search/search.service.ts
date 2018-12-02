@@ -11,12 +11,4 @@ export class SearchService {
 
     return this.http.get<any>(environment.domain+'search/' + tags[0] + '/' + tags[1] + '/'  + tags[2] + '/' + curr + '/' + pp);
   }
-// to be done
-// viewing the profile clicked on
-  viewProfile(term: string): Observable<any> {
-    if (!term.trim()) {
-      return of([]);
-      }
-    return this.http.get<any>(`http://localhost:4200/profile/` + term);
-  }
 }

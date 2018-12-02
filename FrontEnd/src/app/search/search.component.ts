@@ -1,47 +1,62 @@
 import { Component, OnInit } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatMenuModule } from '@angular/material/menu';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatCardModule} from '@angular/material/card';
-import { SearchService } from './search.service';
-import { User } from './user';
-// import { PageEvent, MatPaginator } from '@angular/material';
-import { ViewChild } from '@angular/core';
+import { SearchService } from '../search/search.service';
+import { Router } from '@angular/router';
+
+
+export interface Country {
+  value: string;
+  viewValue: string;
+}
+export interface Uni {
+  value: string;
+  viewValue: string;
+}
+export interface Major {
+  value: string;
+  viewValue: string;
+}
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
 })
 export class SearchComponent implements OnInit {
-  users: User[];
-  tag: string;
+  countries: Country[] = [
+    { value: 'NA', viewValue: '--' },
+    { value: 'germany', viewValue: 'Germany' },
+    { value: 'spain', viewValue: 'Spain' },
+    { value: 'austria', viewValue: 'Austria' }
+  ];
+  unis: Uni[] = [
+    { value: 'NA', viewValue: '--' },
+    { value: 'tum', viewValue: 'TUM' },
+    { value: 'ulm', viewValue: 'ULM' },
+    { value: 'munchen', viewValue: 'Munchen' }
+  ];
+  majors: Major[] = [
+    { value: 'NA', viewValue: '--' },
+    { value: 'dmet', viewValue: 'DMET' },
+    { value: 'computerscience', viewValue: 'Computer Science' },
+    { value: 'mechatronics', viewValue: 'Mechatronics' }
+  ];
+  users: [];
+  l: number;
+  names: string[];
   tags: string[];
   currPage: number;
   numberPerPage = 10;
   totPages: number;
-  searchKey: string;
-  major: string;
-  uni: string;
-  country: string;
   filter: string[];
   i: number;
 
+  constructor(private searchService: SearchService, private router: Router) { }
 
-  constructor(private searchService: SearchService) { }
+
 
   firstPage(): void {
     const self = this;
     self.currPage = 1;
     self.users = [];
-  }
-  applyCountry(input: string) {
-    this.tags[0] = input;
-  }
-  applyUni(input: string) {
-    this.tags[1] = input;
-  }
-  applyMajor(input: string) {
-    this.tags[2] = input;
   }
   search() {
     this.currPage = 1;
@@ -57,8 +72,8 @@ export class SearchComponent implements OnInit {
     this.filter[index] = option;
   }
   // navigating to profile clicked on
-  goToProfile(username: string) {
-    this.searchService.viewProfile(username);
+  goToProfile(_id: string) {
+    this.router.navigateByUrl('bprofile/' + _id);
   }
   removeTags(): void {
     this.filter = [];
@@ -93,12 +108,21 @@ export class SearchComponent implements OnInit {
   // getting the current page
   getCurrPage(): void {
     const self = this;
-    self.searchService.getUsers(self.tags, self.currPage, self.numberPerPage
+
+    console.log(self.tags);
+    this.searchService.getUsers(self.tags, self.currPage, self.numberPerPage
     ).subscribe(function (retreivedUsers) {
-      self.users = retreivedUsers.data.docs,
-        self.totPages = retreivedUsers.data.pages;
+      // self.users = retreivedUsers,
+      self.users = retreivedUsers.data;
+      self.totPages = retreivedUsers.data.pages;
+      if (self.users.length == 0)
+        console.log('No users found');
+      else {
+        //console.log(self.users[0].name);
+        console.log(self.users.length);
+      }
     });
-    this.removeTags();
+    //this.removeTags();
   }
   changePage(pageNumber: number): void {
 
@@ -111,12 +135,14 @@ export class SearchComponent implements OnInit {
     window.scrollTo(0, 0);
     this.currPage = 1;
     this.tags = ['NA', 'NA', 'NA'];
-    this.users = [];
-   // this.getCurrPage();
+    // this.getCurrPage();
     this.filter = [];
     this.currPage = 1;
     this.firstPage();
+    this.search();
+
 
   }
 
 }
+

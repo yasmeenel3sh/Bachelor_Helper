@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SearchComponent } from './search/search.component';
 import { SearchService } from './search/search.service';
+import { PipeTransform, Pipe } from '@angular/core';
 import {  HttpClientModule } from '../../node_modules/@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -17,8 +18,8 @@ import {MatChipsModule} from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
 import { ExpertProfileComponent } from './expert-profile/expert-profile.component';
-
-
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,9 @@ import { ExpertProfileComponent } from './expert-profile/expert-profile.componen
     BrowserAnimationsModule,
     HttpClientModule,
     MatChipsModule,
-    MatCardModule
+    MatCardModule,
+    MatSelectModule,
+    MatInputModule,
   ],
   providers: [
     RegisterService,

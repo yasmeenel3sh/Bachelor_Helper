@@ -4,7 +4,7 @@ import { UserDTO } from '../user-profile/data/userDTO';
 import { AuthService } from '../services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-expert-profile',
   templateUrl: './expert-profile.component.html',
@@ -14,7 +14,7 @@ import { environment } from '../../environments/environment';
 export class ExpertProfileComponent implements OnInit {
   currentUser:UserDTO;
   sendEmail:boolean;
-
+  isRetrieved:boolean;
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ export class ExpertProfileComponent implements OnInit {
 
   });
 
-constructor(private http: HttpClient, private auth: AuthService,
+constructor(private http: HttpClient, private auth: AuthService,private route: ActivatedRoute,
     private formBuilder: FormBuilder, private reactiveFormModule: ReactiveFormsModule) {
 
 this.currentUser=new UserDTO();
@@ -47,7 +47,21 @@ this.currentUser.info="he is a an expert";
     }
 
   ngOnInit() {
-  
+   // get the userDTo here from the data base
+   this.isRetrieved=false;
+   console.log(this.route.snapshot.paramMap.get('id'));
+   this.http.get<any>(environment.domain+'user/'+this.route.snapshot.paramMap.get('id'))
+   .subscribe((res: any) => {
+    this.currentUser=res.data;
+    this.isRetrieved=true;
+    console.log(res.data);
+   
+  }, err => {
+   console.log(err);
+  });
+
+ 
+
   }
 onSubmit(){
   //this should be placed inside the success of the method
