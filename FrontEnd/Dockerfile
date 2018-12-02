@@ -11,6 +11,7 @@ COPY package.json /usr/src/app
 
 # Install dependecies
 RUN npm i -g @angular/cli --no-optional  --no-shrinkwrap --no-package-lock
+RUN npm install --no-optional
 
 # Get all the code needed to run the app
 COPY . /usr/src/app
