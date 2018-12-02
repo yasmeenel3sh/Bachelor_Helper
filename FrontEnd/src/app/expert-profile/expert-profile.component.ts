@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ExpertProfileComponent implements OnInit {
   currentUser:UserDTO;
   sendEmail:boolean;
+  loggedIn:boolean;
   isRetrieved:boolean;
   private httpOptions = {
     headers: new HttpHeaders({
@@ -49,6 +50,7 @@ this.currentUser.info="he is a an expert";
   ngOnInit() {
    // get the userDTo here from the data base
    this.isRetrieved=false;
+   this.loggedIn=false;
    console.log(this.route.snapshot.paramMap.get('id'));
    this.http.get<any>(environment.domain+'user/'+this.route.snapshot.paramMap.get('id'))
    .subscribe((res: any) => {
@@ -60,6 +62,7 @@ this.currentUser.info="he is a an expert";
    console.log(err);
   });
 
+  this.loggedIn=this.auth.isAuthenticated();
  
 
   }

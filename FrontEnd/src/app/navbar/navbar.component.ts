@@ -24,12 +24,12 @@ export class NavbarComponent implements OnInit {
   } else {
       this.signedIn = false;
   }
-  console.log(this.auth.isAuthenticated());
+  
   }
   logOut(){
     this.signedIn=false;
     this.auth.logout();
-    console.log("logged out");
+  
     window.location.reload();
   }
   isSignedIn(){

@@ -46,7 +46,7 @@ process.on('SIGTERM', function () {
     });
 });
 
-mongoose.connect(dbUrl, function (err) {
+mongoose.connect(dbUrl,{ useNewUrlParser: true}, function (err) {
     if (!err) {
         return console.log('Successfully connected to mongoDB' + dbUrl);
     }
