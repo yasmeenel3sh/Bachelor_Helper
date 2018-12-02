@@ -34,12 +34,12 @@ module.exports = {
  b)src
  c)environments
  d)environment.ts
- ```
+
   in the const environment
    domain: "http://192.168.99.100:3000/api/" if running docker on virtual machine on windows
    OR
    domain:http://localhost:3000/api/ if running docker on linux or locally 
-
+ ```
 3- **Run Docker**
 ```
 
