@@ -45,7 +45,8 @@ module.exports = {
 
  -Go to project directory on cmd
   Write command 
- -docker-compose up
+ -docker-compose up --build  if building images and then running image(used in case of change in images)
+ -docker-compose up  if running already built images
 
   -if on linux go to http://localhost:4200
   -if on virtual machine windows http://192.168.99.100:3000:4200
