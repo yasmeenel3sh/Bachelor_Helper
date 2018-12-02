@@ -66,10 +66,13 @@ export class UserProfileComponent implements OnInit {
    this.selectedfile =event.target.files[0];
    console.log(event);
   }
+
 onUpload(){
+  //from Data is used to send files
   this.fd = new FormData();
   this.fd.append('image',this.selectedfile,this.selectedfile.name);
-  this.http.post(environment.domain+'user/upload',this.fd).subscribe(
+  //here i give him the fd but take a look at back end what he expects to take from us
+  this.http.patch(environment.domain+'user/updateImage',this.fd).subscribe(
    res=>{
      console.log(res);
    },err=>{
@@ -77,7 +80,6 @@ onUpload(){
    }
    )
 }
-
 
   ngOnInit() {
     // get the userDTo here from the data base
@@ -121,14 +123,6 @@ onUpload(){
   // submit the user data edited to the db with the id
   // take the data from the form inside the userDTO to send todb
   onSubmit(): void {
-    
-    // this.updatedUser.name = this.formData.controls.name.value;
-    // this.updatedUser.bachYear = this.formData.controls.bachYear.value;
-    // this.updatedUser.bachUni = this.formData.controls.bachUni.value;
-    // this.updatedUser.bachCountry = this.formData.controls.bachCountry.value;
-    // this.updatedUser.major = this.formData.controls.major.value;
-    // this.updatedUser.info = this.formData.controls.info.value;
-    // here is the service that updates a user
     let updatedUser={
       name : this.formData.controls.name.value,
      bachYear : this.formData.controls.bachYear.value,

@@ -2,10 +2,30 @@ var mongoose = require('mongoose'),
   jwt = require('jsonwebtoken'),
   Validations = require('../utils/validations'),
   Encryption = require('../utils/encryption'),
-  EMAIL_REGEX = require('../config').EMAIL_REGEX,
+  EMAIL_REGEX = require('../config').EMAIL_REGEX
+  const multer =require('multer');
  
+
+//************************************************ */
+//this part is used to create a folder in the backend to 
+//store the files uploaded but since its already implemented in the 
+//app.js so no need to repeat it again
+
+//  const storage=multer.diskStorage({
+//    destination:function(req,file,cb){
+//      cb(null,'./uploads');
+//    },
+//    filename:function(req,file,cb){
+//      cb(null,file.originalname);
+//    }
+//  })
  
+ //const upload =multer({storage:storage});
+//************************************************** */
+
   User = mongoose.model('User');
+ 
+  //get a user by id
   module.exports.getUser = function (req, res, next)  {
       if (!Validations.isObjectId(req.params._id)) {
         return res.status(422).json({
@@ -32,12 +52,34 @@ var mongoose = require('mongoose'),
        
       });
     };
-    
-  
-  
-  module.exports.updateUser = function (req, res, next) {
 
-   
+    // router.post("/upload",upload.single('productImage'),(req,res,next)=>{
+    //   console.log(req.file);
+    // })
+//*************************************************************************/
+//here is the method to update Image and it uses the userUpdate method
+module.exports.updateImage = function (req, res, next) {
+  User.findByIdAndUpdate(
+    req.decodedToken.user._id, {
+      $set: { photo: req.body.photo }//how does he set the photo here
+    }, {
+      new: true
+    }
+  ).exec(function (err, updateUser) {
+    if (err) {
+      console.log(err)
+      return next(err);
+    } else {
+      res.status(200).json({
+        err: null,
+        msg: 'the image was really uploaded',
+        data: token
+      });
+    }
+  });
+};
+//***********************************************
+  module.exports.updateUser = function (req, res, next) {
     delete req.body.password;
     delete req.body.email;
   
@@ -99,6 +141,9 @@ var mongoose = require('mongoose'),
       }
     });
   };
+
+
+
 
 var nodemailer = require('nodemailer');
 

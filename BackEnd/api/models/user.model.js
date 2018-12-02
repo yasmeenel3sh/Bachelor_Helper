@@ -23,7 +23,7 @@ const UserSchema = new mongoose.Schema({
 
     photo: {
         type: String,
-        default: 'lam3i'
+         default: 'lam3i'
     },
     major:{
         type:String,
