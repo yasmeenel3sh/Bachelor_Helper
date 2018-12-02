@@ -4,7 +4,7 @@ var express = require('express'),
     authCtrl = require('../controllers/auth.controller'),
     mw = require('./middlewares');
 var UserController =require ('../controllers/user.controller');
-var SearchController = require('../controllers/Search.controller');
+var SearchController = require('../controllers/search.controller');
 const multer =require('multer');
 
 

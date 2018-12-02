@@ -14,7 +14,7 @@ services:
     links:
       - database
 
-  database: # name of the third service
-    image: mongo # specify image to build container from
+  database:
+    image: mongo
     ports:
-      - "27017:27017" # specify port forewarding
+      - "27017:27017"
