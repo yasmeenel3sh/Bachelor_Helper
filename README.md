@@ -27,9 +27,15 @@ module.exports = {
 };
 
 2- **Update Environt in FrontEnd**
+```
+
  a)Go to FrontEnd
+
+```
  b)src
+ ```
  c)environments
+ ```
  d)environment.ts
   in the const environment
    domain: "http://192.168.99.100:3000/api/" if running docker on virtual machine on windows
