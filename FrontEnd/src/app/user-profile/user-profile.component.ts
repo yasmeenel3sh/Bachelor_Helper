@@ -4,6 +4,10 @@ import { UserDTO } from './data/userDTO';
 import { AuthService } from '../services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import{Country} from '../search/search.component';
+import {Major} from '../search/search.component';
+import {Uni} from '../search/search.component';
+
 
 @Component({
   selector: 'app-user-profile',
@@ -27,12 +31,32 @@ export class UserProfileComponent implements OnInit {
   isRetrieved:boolean;
   
 
-  majors=["Computer Science","Dmet","Business Informatics","Applied Arts",
-  "Management","Electronics","Law","Pharmacy","Communication","Networks",
-  "Mechatronics","Production","Material"];
+  // majors=["Computer Science","Dmet","Business Informatics","Applied Arts",
+  // "Management","Electronics","Law","Pharmacy","Communication","Networks",
+  // "Mechatronics","Production","Material"];
 
-  countries=["Germany","USA","England","Egypt","Switzerland","Canada","Japan","Autsralia"];
+  // countries=["Germany","USA","England","Egypt","Switzerland","Canada","Japan","Autsralia"];
  
+  countries: Country[] = [
+    { value: 'NA', viewValue: '--' },
+    { value: 'germany', viewValue: 'Germany' },
+    { value: 'spain', viewValue: 'Spain' },
+    { value: 'austria', viewValue: 'Austria' }
+  ];
+  unis: Uni[] = [
+    { value: 'NA', viewValue: '--' },
+    { value: 'tum', viewValue: 'TUM' },
+    { value: 'ulm', viewValue: 'ULM' },
+    { value: 'munchen', viewValue: 'Munchen' }
+  ];
+  majors: Major[] = [
+    { value: 'NA', viewValue: '--' },
+    { value: 'dmet', viewValue: 'DMET' },
+    { value: 'computerscience', viewValue: 'Computer Science' },
+    { value: 'mechatronics', viewValue: 'Mechatronics' }
+  ];
+
+
   selectedfile;
   fd;
 
@@ -89,6 +113,8 @@ onUpload(){
       this.currentUser=res.data;
       this.isRetrieved=true;
       console.log(res.data);
+      console.log(this.unis);
+      console.log(this.unis[0].value +""+ this.unis[0].viewValue);
      
     }, err => {
      console.log(err);
