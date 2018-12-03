@@ -86,24 +86,24 @@ export class UserProfileComponent implements OnInit {
      
 
   }
-  onFileSelected(event){
-   this.selectedfile =event.target.files[0];
-   console.log(event);
-  }
+  // onFileSelected(event){
+  //  this.selectedfile =event.target.files[0];
+  //  console.log(event);
+  // }
 
-onUpload(){
-  //from Data is used to send files
-  this.fd = new FormData();
-  this.fd.append('image',this.selectedfile,this.selectedfile.name);
-  //here i give him the fd but take a look at back end what he expects to take from us
-  this.http.patch(environment.domain+'user/updateImage',this.fd).subscribe(
-   res=>{
-     console.log(res);
-   },err=>{
-     console.log(err);
-   }
-   )
-}
+// onUpload(){
+//   //from Data is used to send files
+//   this.fd = new FormData();
+//   this.fd.append('image',this.selectedfile,this.selectedfile.name);
+//   //here i give him the fd but take a look at back end what he expects to take from us
+//   this.http.patch(environment.domain+'user/updateImage',this.fd).subscribe(
+//    res=>{
+//      console.log(res);
+//    },err=>{
+//      console.log(err);
+//    }
+//    )
+// }
 
   ngOnInit() {
     // get the userDTo here from the data base
