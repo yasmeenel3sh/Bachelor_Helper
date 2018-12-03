@@ -4,7 +4,7 @@
 
 export const environment = {
   domain:"http://localhost:3000/api/" , //"http://192.168.99.100:3000/api/" // 
-  production: false
+  production: true
 };
 /*
  * For easier debugging in development mode, you can import the following file

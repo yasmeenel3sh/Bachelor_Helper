@@ -83,4 +83,10 @@ cd FrontEnd
 npm install
 ng serve
 ```
- 
+ **Heroku:**
+ git add .
+ git commit
+ heroku login
+ heroku create
+ git push heroku deployment
+ heroku open
