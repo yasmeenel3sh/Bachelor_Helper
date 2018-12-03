@@ -146,7 +146,7 @@ var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 
 module.exports.sendMail = function (req, res, next) {
- console.log("sending");
+ console.log('sending');
   var transporter = nodemailer.createTransport(smtpTransport({
     service: 'gmail',
 
@@ -164,7 +164,7 @@ module.exports.sendMail = function (req, res, next) {
  });
   var mailOptions = {
     //***********i added this part */
-    from: req.body.from,
+    ///from: req.body.from,
     to: req.body.to,
     subject: req.body.subject,
     text: 'Sent from: ' + req.body.from + '\n' + req.body.text
@@ -173,7 +173,6 @@ module.exports.sendMail = function (req, res, next) {
   
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
-     
       console.log(error);
       return next(error);
     } else {
