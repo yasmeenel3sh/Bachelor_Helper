@@ -12,7 +12,7 @@ router.post('/auth/register', mw.isNotAuthenticated, authCtrl.register);
 router.post('/auth/login', mw.isNotAuthenticated, authCtrl.login);
 //--------------------------user Routes---------------------------//
 router.patch('/user/update',mw.isAuthenticated, UserController.updateUser);
-router.post('/user/mail',  UserController.sendMail);
+router.post('/user/mail', UserController.sendMail);
 router.get('/user/:_id',UserController.getUser);
 //here is the route 
 //router.patch('/user/updateImage',UserController.updateImage);

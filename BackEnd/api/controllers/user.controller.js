@@ -1,8 +1,10 @@
 var mongoose = require('mongoose'),
-  jwt = require('jsonwebtoken'),
+  
   Validations = require('../utils/validations'),
-  Encryption = require('../utils/encryption'),
-  EMAIL_REGEX = require('../config').EMAIL_REGEX
+ 
+   smtpTransport = require('nodemailer-smtp-transport'),
+  nodemailer = require('nodemailer');
+
   const multer =require('multer');
  
 
@@ -93,13 +95,7 @@ module.exports.updateImage = function (req, res, next) {
         data: null
       });
     }
-    if (!(/^[a-zA-Z]+$/.test(req.body.name) )) {
-      return res.status(422).json({
-        err: null,
-        msg: 'Name is invalid (only English characters).',
-        data: null
-      });
-    }
+
   
     let set = {
       name: req.body.name,
@@ -146,18 +142,24 @@ module.exports.updateImage = function (req, res, next) {
 
 
 
-var nodemailer = require('nodemailer');
 
 module.exports.sendMail = function (req, res, next) {
- 
-  var transporter = nodemailer.createTransport({
+ console.log("sending");
+  var transporter = nodemailer.createTransport(smtpTransport({
     service: 'gmail',
+
     auth: {
       user:'Bachelor.Helper.GUC@gmail.com',
       pass:'1olfat2yasmeen3nourhan'
     }
-  });
-  
+  }));
+  transporter.verify(function(error, success) {
+    if (error) {
+         console.log(error);
+    } else {
+         console.log('Server is ready to take our messages');
+    }
+ });
   var mailOptions = {
     to: req.body.to,
     subject: req.body.subject,
@@ -166,14 +168,14 @@ module.exports.sendMail = function (req, res, next) {
   
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
-      console.log(yessssssssssssssssssssssssssssssssssssssssssssssssssssssssssss);
+     
       console.log(error);
       //return next(error);
     } else {
       res.status(200).json({
         err: null,
         msg: 'Email is Sent!',
-        data: null
+        data: info
       });
     }
   });
