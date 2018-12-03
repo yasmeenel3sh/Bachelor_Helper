@@ -51,6 +51,8 @@ module.exports = {
   -if on linux go to http://localhost:4200
   -if on virtual machine windows http://192.168.99.100:4200
 ```
+**ps if email feature isnot working make sure to allow unsecure apps**https://myaccount.google.com/lesssecureapps?fbclid=IwAR2YTqUeccSGP3ryQB-GCqYUMFNMutLwx8kDFJD57HRnO6tHdp0Wh42Bxkc
+
  **Running Locally**
  <h1 align="center">  Bachelor Helper </h1>
 
