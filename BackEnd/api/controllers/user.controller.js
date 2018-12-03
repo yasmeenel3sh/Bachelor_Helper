@@ -1,13 +1,15 @@
 var mongoose = require('mongoose'),
-  
+  jwt = require('jsonwebtoken'),
   Validations = require('../utils/validations'),
  
-   smtpTransport = require('nodemailer-smtp-transport'),
   nodemailer = require('nodemailer');
 
   const multer =require('multer');
- 
 
+  User = mongoose.model('User');
+  require('dotenv').config();
+  
+ 
 //************************************************ */
 //this part is used to create a folder in the backend to 
 //store the files uploaded but since its already implemented in the 
@@ -25,7 +27,8 @@ var mongoose = require('mongoose'),
  //const upload =multer({storage:storage});
 //************************************************** */
 
-  User = mongoose.model('User');
+
+  
  
   //get a user by id
   module.exports.getUser = function (req, res, next)  {
@@ -60,27 +63,27 @@ var mongoose = require('mongoose'),
     //   console.log(req.file);
     // })
 //*************************************************************************/
-//here is the method to update Image and it uses the userUpdate method
-module.exports.updateImage = function (req, res, next) {
-  User.findByIdAndUpdate(
-    req.decodedToken.user._id, {
-      $set: { photo: req.body.photo }//how does he set the photo here
-    }, {
-      new: true
-    }
-  ).exec(function (err, updateUser) {
-    if (err) {
-      console.log(err)
-      return next(err);
-    } else {
-      res.status(200).json({
-        err: null,
-        msg: 'the image was really uploaded',
-        data: token
-      });
-    }
-  });
-};
+// //here is the method to update Image and it uses the userUpdate method
+// module.exports.updateImage = function (req, res, next) {
+//   User.findByIdAndUpdate(
+//     req.decodedToken.user._id, {
+//       $set: { photo: req.body.photo }//how does he set the photo here
+//     }, {
+//       new: true
+//     }
+//   ).exec(function (err, updateUser) {
+//     if (err) {
+//       console.log(err)
+//       return next(err);
+//     } else {
+//       res.status(200).json({
+//         err: null,
+//         msg: 'the image was really uploaded',
+//         data: token
+//       });
+//     }
+//   });
+// };
 //***********************************************
   module.exports.updateUser = function (req, res, next) {
     delete req.body.password;
@@ -139,6 +142,7 @@ module.exports.updateImage = function (req, res, next) {
     });
   };
 
+  var nodemailer = require('nodemailer');
 
 
 
@@ -146,15 +150,30 @@ var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 
 module.exports.sendMail = function (req, res, next) {
- console.log('sending');
-  var transporter = nodemailer.createTransport(smtpTransport({
-    service: 'gmail',
+ console.log("sending");
 
-    auth: {
-      user:'Bachelor.Helper.GUC@gmail.com',
-      pass:'1olfat2yasmeen3nourhan'
-    }
-  }));
+// console.log(process.env.MAIL_USER);
+// console.log(process.env.SECRET_KEY);
+// console.log(process.env.CLIENT_ID);
+// console.log(process.env.REFRESH_TOKEN);
+// console.log(process.env.ACCESS_TOKEN);
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+       type: "OAuth2",
+      //  user: "Bachelor.Helper.GUC@gmail.com", 
+      //  clientId: "1059268086385-5pp1qbdrd6k8tmg9vdquc29a6h602uf2.apps.googleusercontent.com",
+      //  clientSecret: "qWb9ElFfSqYOJ_rWEPKmSXaG",
+      //  refreshToken: "1/EpKVnQxa1fahXWZM6dB7LIFHWB4sooo5dvs_-PeYgP0",
+      //  accessToken: "ya29.GltnBrLai0RJ01XzLw3466hcekfMakCPTujeni0shn8A6dmnEBScFow-0gbwd2SozXHxTf4LdtVGYAufNQZVFCFvw_YuKR8kV4f_5UN3kyNYjdgeCp2n7o7JVpMx"
+      user: process.env.MAIL_USER, 
+      clientId: process.env.CLIENT_ID,
+      clientSecret: process.env.SECRET_KEY,
+      refreshToken: process.env.REFRESH_TOKEN,
+      accessToken: process.env.ACCESS_TOKEN
+
+  }
+});
   transporter.verify(function(error, success) {
     if (error) {
          console.log(error);
@@ -171,16 +190,20 @@ module.exports.sendMail = function (req, res, next) {
 
   };
   
-  transporter.sendMail(mailOptions, function(error, info){
-    if (error) {
-      console.log(error);
-      return next(error);
-    } else {
-      res.status(200).json({
-        err: null,
-        msg: 'Email is Sent!',
-        data: info
-      });
-    }
-  });
-}
+
+     
+     transporter.sendMail(mailOptions, function(error, info){
+       if (error) {
+        
+         console.log(error);
+         return next(error);
+       } else {
+         res.status(200).json({
+           err: null,
+           msg: 'Email is Sent!',
+           data: info
+         });
+       }
+     });
+   
+  }

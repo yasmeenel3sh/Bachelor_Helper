@@ -11,9 +11,9 @@
    
 <!-- Page content -->
 <div class="w3-main" >
-  <h1>Upload your profile image</h1>
+  <!-- <h1>Upload your profile image</h1>
   <input type="file" (change)="onFileSelected($event)">
-  <button (click)="onUpload()">Upload </button>
+  <button (click)="onUpload()">Upload   </button> -->
   
 <div id="Borge" class="w3-container person">
   <br>
@@ -40,26 +40,26 @@
     
      <label  style="margin-left:30px;">Major :</label>
     <label *ngIf="!editProfile && isRetrieved" style="margin-left:80px;">{{currentUser.major}}</label>
-
-      <select *ngIf="editProfile" style="margin-left:100px;" formControlName="major">
-        <option   *ngFor="let major of majors" [value]="major" >{{major}}</option>
+      <select class='p' *ngIf="editProfile" style="margin-left:100px;" formControlName="major">
+        <option  class='c' *ngFor="let major of majors" [value]="major.value" >{{major.viewValue}}</option>
       </select>
     
     <br><br>
     
     <label  style="margin-left:30px;">University :</label>
     <label  *ngIf="!editProfile && isRetrieved" style="margin-left:80px;">{{currentUser.bachUni}}</label>
-    <input  *ngIf="editProfile" type="text" formControlName="bachUni"
-    placeholder="university"  style="margin-left:30px;"><br><br>
+    <select class='p' *ngIf="editProfile" style="margin-left:100px;" formControlName="bachUni">
+      <option class='c'  *ngFor="let uni of unis" [value]="uni.value" >{{uni.viewValue}}</option>
+    </select>
     
-  
+    <br><br>
     <label  style="margin-left:30px;">Country :</label>
     <label *ngIf="!editProfile && isRetrieved"  style="margin-left:80px;">{{currentUser.bachCountry}}</label>
-  
-    <select *ngIf="editProfile" style="margin-left:100px;" formControlName="bachCountry">
-      <option   *ngFor="let country of countries" [value]="country" >{{country}}</option>
+    <select class='p' *ngIf="editProfile" style="margin-left:100px;" formControlName="bachCountry">
+      <option class='c'  *ngFor="let country of countries" [value]="country.value" >{{country.viewValue}}</option>
     </select>
   
+    
   <br><br>
   
     <label  style="margin-left:30px;">Year :</label>
@@ -83,3 +83,5 @@
 </div> 
 </body>
 </html> 
+
+

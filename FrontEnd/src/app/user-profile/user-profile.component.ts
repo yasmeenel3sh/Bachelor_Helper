@@ -4,6 +4,10 @@ import { UserDTO } from './data/userDTO';
 import { AuthService } from '../services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import{Country} from '../search/search.component';
+import {Major} from '../search/search.component';
+import {Uni} from '../search/search.component';
+
 
 @Component({
   selector: 'app-user-profile',
@@ -27,12 +31,58 @@ export class UserProfileComponent implements OnInit {
   isRetrieved:boolean;
   
 
-  majors=["Computer Science","Dmet","Business Informatics","Applied Arts",
-  "Management","Electronics","Law","Pharmacy","Communication","Networks",
-  "Mechatronics","Production","Material"];
+  // majors=["Computer Science","Dmet","Business Informatics","Applied Arts",
+  // "Management","Electronics","Law","Pharmacy","Communication","Networks",
+  // "Mechatronics","Production","Material"];
 
-  countries=["Germany","USA","England","Egypt","Switzerland","Canada","Japan","Autsralia"];
+  // countries=["Germany","USA","England","Egypt","Switzerland","Canada","Japan","Autsralia"];
  
+  countries: Country[] = [
+    { value: 'NA', viewValue: '--' },
+    { value: 'finland', viewValue: 'Finland' },
+    { value: 'denmark', viewValue: 'Denmark' },
+    { value: 'belgium', viewValue: 'Belgium' },
+    { value: 'greece', viewValue: 'Greece' },
+    { value: 'italy', viewValue: 'Italy' },
+    { value: 'england', viewValue: 'England' },
+    { value: 'france', viewValue: 'France' },
+    { value: 'germany', viewValue: 'Germany' },
+    { value: 'spain', viewValue: 'Spain' },
+    { value: 'austria', viewValue: 'Austria' }
+
+  ];
+  unis: Uni[] = [
+    { value: 'NA', viewValue: '--' },
+    { value: 'tum', viewValue: 'TUM' },
+    { value: 'ulm', viewValue: 'ULM' },
+    { value: 'humboldtuniversityofberlin', viewValue: 'Humboldt University of Berlin' },
+    { value: 'heidelberguniversity', viewValue: 'Heidelberg University' },  
+    { value: 'universityofoxford', viewValue: 'University of Oxford' },
+    { value: 'universityofcambridge', viewValue: 'University of Cambridge' },
+    { value: 'universityofedinburgh', viewValue: 'University of Edinburgh' },
+    { value: 'universityofcopenhagen', viewValue: 'University of Copenhagen' },
+    { value: 'ecolepolytechnique', viewValue: 'École Polytechnique' },
+    { value: 'universityoffreiburg', viewValue: 'University of Freiburg' }
+  ];
+  majors: Major[] = [
+    { value: 'law', viewValue: 'Law' },
+    { value: 'pharmacy', viewValue: 'Pharmacy' },
+    { value: 'mechatronics', viewValue: 'Mechatronics' },
+    { value: 'production', viewValue: 'Production' },
+    { value: 'material', viewValue: 'Material' },
+    { value: 'communication', viewValue: 'Communications' },
+    { value: 'networks', viewValue: 'Networks' },
+    { value: 'businessinformatics', viewValue: 'Business Informatics' },
+    { value: 'appliedarts', viewValue: 'Applied Arts' },
+    { value: 'management', viewValue: 'Management' },
+    { value: 'electronics', viewValue: 'Electronics' },
+    { value: 'dmet', viewValue: 'DMET' },
+    { value: 'computerscience', viewValue: 'Computer Science' },
+    { value: 'mechatronics', viewValue: 'Mechatronics' }
+  ];
+ 
+
+
   selectedfile;
   fd;
 
@@ -62,24 +112,24 @@ export class UserProfileComponent implements OnInit {
      
 
   }
-  onFileSelected(event){
-   this.selectedfile =event.target.files[0];
-   console.log(event);
-  }
+  // onFileSelected(event){
+  //  this.selectedfile =event.target.files[0];
+  //  console.log(event);
+  // }
 
-onUpload(){
-  //from Data is used to send files
-  this.fd = new FormData();
-  this.fd.append('image',this.selectedfile,this.selectedfile.name);
-  //here i give him the fd but take a look at back end what he expects to take from us
-  this.http.patch(environment.domain+'user/updateImage',this.fd).subscribe(
-   res=>{
-     console.log(res);
-   },err=>{
-     console.log(err);
-   }
-   )
-}
+// onUpload(){
+//   //from Data is used to send files
+//   this.fd = new FormData();
+//   this.fd.append('image',this.selectedfile,this.selectedfile.name);
+//   //here i give him the fd but take a look at back end what he expects to take from us
+//   this.http.patch(environment.domain+'user/updateImage',this.fd).subscribe(
+//    res=>{
+//      console.log(res);
+//    },err=>{
+//      console.log(err);
+//    }
+//    )
+// }
 
   ngOnInit() {
     // get the userDTo here from the data base
@@ -89,6 +139,8 @@ onUpload(){
       this.currentUser=res.data;
       this.isRetrieved=true;
       console.log(res.data);
+      console.log(this.unis);
+      console.log(this.unis[0].value +""+ this.unis[0].viewValue);
      
     }, err => {
      console.log(err);
