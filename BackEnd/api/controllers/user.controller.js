@@ -146,6 +146,8 @@ var mongoose = require('mongoose'),
 
 
 
+var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
 
 module.exports.sendMail = function (req, res, next) {
  console.log("sending");
@@ -181,7 +183,7 @@ const transporter = nodemailer.createTransport({
  });
   var mailOptions = {
     //***********i added this part */
-    from: req.body.from,
+    ///from: req.body.from,
     to: req.body.to,
     subject: req.body.subject,
     text: 'Sent from: ' + req.body.from + '\n' + req.body.text

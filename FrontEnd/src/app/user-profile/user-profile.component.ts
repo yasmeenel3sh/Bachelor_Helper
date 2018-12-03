@@ -39,22 +39,48 @@ export class UserProfileComponent implements OnInit {
  
   countries: Country[] = [
     { value: 'NA', viewValue: '--' },
+    { value: 'finland', viewValue: 'Finland' },
+    { value: 'denmark', viewValue: 'Denmark' },
+    { value: 'belgium', viewValue: 'Belgium' },
+    { value: 'greece', viewValue: 'Greece' },
+    { value: 'italy', viewValue: 'Italy' },
+    { value: 'england', viewValue: 'England' },
+    { value: 'france', viewValue: 'France' },
     { value: 'germany', viewValue: 'Germany' },
     { value: 'spain', viewValue: 'Spain' },
     { value: 'austria', viewValue: 'Austria' }
+
   ];
   unis: Uni[] = [
     { value: 'NA', viewValue: '--' },
     { value: 'tum', viewValue: 'TUM' },
     { value: 'ulm', viewValue: 'ULM' },
-    { value: 'munchen', viewValue: 'Munchen' }
+    { value: 'humboldtuniversityofberlin', viewValue: 'Humboldt University of Berlin' },
+    { value: 'heidelberguniversity', viewValue: 'Heidelberg University' },  
+    { value: 'universityofoxford', viewValue: 'University of Oxford' },
+    { value: 'universityofcambridge', viewValue: 'University of Cambridge' },
+    { value: 'universityofedinburgh', viewValue: 'University of Edinburgh' },
+    { value: 'universityofcopenhagen', viewValue: 'University of Copenhagen' },
+    { value: 'ecolepolytechnique', viewValue: 'École Polytechnique' },
+    { value: 'universityoffreiburg', viewValue: 'University of Freiburg' }
   ];
   majors: Major[] = [
-    { value: 'NA', viewValue: '--' },
+    { value: 'law', viewValue: 'Law' },
+    { value: 'pharmacy', viewValue: 'Pharmacy' },
+    { value: 'mechatronics', viewValue: 'Mechatronics' },
+    { value: 'production', viewValue: 'Production' },
+    { value: 'material', viewValue: 'Material' },
+    { value: 'communication', viewValue: 'Communications' },
+    { value: 'networks', viewValue: 'Networks' },
+    { value: 'businessinformatics', viewValue: 'Business Informatics' },
+    { value: 'appliedarts', viewValue: 'Applied Arts' },
+    { value: 'management', viewValue: 'Management' },
+    { value: 'electronics', viewValue: 'Electronics' },
     { value: 'dmet', viewValue: 'DMET' },
     { value: 'computerscience', viewValue: 'Computer Science' },
     { value: 'mechatronics', viewValue: 'Mechatronics' }
   ];
+ 
 
 
   selectedfile;
