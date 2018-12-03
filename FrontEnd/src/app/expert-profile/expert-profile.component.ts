@@ -63,8 +63,8 @@ this.currentUser=new UserDTO();
 onSubmit(){
   //this should be placed inside the success of the method
   let mailObject= {
-      from :this.auth.getCurrentUser().email,
-      to :this.currentUser.email,
+      to :this.auth.getCurrentUser().email,
+      from :this.currentUser.email,
       text : this.formData.controls.text.value,
       subject :this.formData.controls.subject.value
   }

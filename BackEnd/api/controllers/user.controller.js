@@ -147,7 +147,7 @@ module.exports.updateImage = function (req, res, next) {
 
 
 var nodemailer = require('nodemailer');
-
+var smtpTransport = require('nodemailer-smtp-transport');
 module.exports.sendMail = function (req, res, next) {
  
   var transporter = nodemailer.createTransport({
@@ -159,6 +159,7 @@ module.exports.sendMail = function (req, res, next) {
   });
   
   var mailOptions = {
+    from: 'Bachelor.Helper.GUC@gmail.com',
     to: req.body.to,
     subject: req.body.subject,
     text: 'Sent from: ' + req.body.from + '\n' + req.body.text
@@ -166,9 +167,8 @@ module.exports.sendMail = function (req, res, next) {
   
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
-      console.log(yessssssssssssssssssssssssssssssssssssssssssssssssssssssssssss);
-      console.log(error);
-      //return next(error);
+     console.log(error);
+     return next(error);
     } else {
       res.status(200).json({
         err: null,
