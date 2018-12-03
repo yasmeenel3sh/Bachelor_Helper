@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
     config = require('../config'),
     dbUrl = config.MONGO_URI;
-
+   // var _server = new MongoClient(connectionString).GetServer();
 // CAPTURE APP TERMINATION / RESTART EVENTS
 // To be called when process is restarted or terminated
 var gracefulShutdown = function (callback) {
