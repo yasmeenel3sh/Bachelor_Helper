@@ -3,12 +3,14 @@ version: '2.1' # specify docker-compose version
 # Define the services/containers to be run
 services:
   angular: # name of the first service
-    build: FrontEnd # specify the directory of the Dockerfile
+    image: yasmeenel3sh/bachelor_angular
+   #   build: FrontEnd # specify the directory of the Dockerfile
     ports:
       - "4200:4200" # specify port forewarding
 
   express: #name of the second service
-    build: BackEnd # specify the directory of the Dockerfile
+    image: yasmeenel3sh/bachelor_express
+    #   build: BackEnd # specify the directory of the Dockerfile
     ports:
       - "3000:3000" #specify ports forewarding
     links:

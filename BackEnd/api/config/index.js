@@ -1,4 +1,5 @@
 // Global App Configuration
+require('dotenv').config();
 module.exports = {
     //BACKEND_URI: 'http://localhost:3000/',
     FRONTEND_URI: process.env.FRONTEND_URI || 'http://localhost:4200/',

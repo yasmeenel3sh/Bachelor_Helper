@@ -2,8 +2,8 @@
 used by gucians looking forward to do their bachelor abroad to look up older students who already did their bachelor abroad and contact them.
 
 **yasmeen khaled:** 37-6614
-**olfat mostafa:** 37-
-**nourhan ahmed**:37-
+**olfat mostafa:** 37-19029
+**nourhan ahmed**:37-9784
 
 ##Running the app 
 
@@ -27,7 +27,23 @@ module.exports = {
     EMAIL_REGEX: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 };
 ```
-2- **Update Environt in FrontEnd**
+2-**add .env file**
+```
+   a)go to BackEnd
+   b)create a new file called .env (the one containing environment variable)
+   c)Format 
+    MAIL_USER= "the email you will be using for the app"
+    CLIENT_ID= ""
+    SECRET_KEY= ""
+    REFRESH_TOKEN= ""
+    ACCESS_TOKEN= ""
+
+    This environment variables are the ones used for the gmail service ,you can follow this link to get these values for your app
+    https://medium.com/@nickroach_50526/sending-emails-with-node-js-using-smtp-gmail-and-oauth2-316fe9c790a1
+
+```
+
+3- **Update Environt in FrontEnd**
 ```
 
  a)Go to FrontEnd
@@ -40,7 +56,7 @@ module.exports = {
    OR
    domain:http://localhost:3000/api/ if running docker on linux or locally 
  ```
-3- **Run Docker**
+4- **Run Docker**
 ```
 
  -Go to project directory on cmd
