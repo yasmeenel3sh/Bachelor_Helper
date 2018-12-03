@@ -39,7 +39,7 @@
     
     
     <label  style="margin-left:30px;">Year :</label>
-    <label   style="margin-left:80px;">{{currentUser.year}}</label>
+    <label   style="margin-left:80px;">{{currentUser.bachYear}}</label>
     <br><br> 
     <label   class="line" style="margin-left:20px;">Detailed Information</label>
     <p  class="double" style="margin-left:10px;margin-right:10px;">
@@ -47,16 +47,16 @@
   </div>
   
     <form  [formGroup]="formData" (ngSubmit)="onSubmit()">
-    <label *ngIf="sendEmail" style="margin-left:30px;">From :</label>
+    <!-- <label *ngIf="sendEmail" style="margin-left:30px;">From :</label>
     <input *ngIf="sendEmail" type="text" formControlName="from"
-    placeholder="type your name" style="margin-left:30px;margin-top:30px;">
+    placeholder="type your name" style="margin-left:30px;margin-top:30px;"> -->
 
     <label *ngIf="sendEmail" style="margin-left:30px;">Subject :</label>
     <input *ngIf="sendEmail" size="60" type="text" formControlName="subject"
     placeholder="type the subject" style="margin-left:30px;margin-top:30px;">
     <br>
 
-      <textarea placeholder="please write your message here" style="margin-left:30px;" rows="10" cols="120" *ngIf="sendEmail" formControlName="emailBody" >wirte your email here</textarea><br>
+      <textarea placeholder="please write your message here" style="margin-left:30px;" rows="10" cols="120" *ngIf="sendEmail" formControlName="text" >wirte your email here</textarea><br>
 
       <button class="cs" *ngIf="!sendEmail && loggedIn" type="button" (click)='enableSendemail()'>compose Email  <i class="fa fa-edit"></i></button><br>
     

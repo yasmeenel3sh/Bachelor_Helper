@@ -28,6 +28,7 @@ var mongoose = require('mongoose'),
   //get a user by id
   module.exports.getUser = function (req, res, next)  {
       if (!Validations.isObjectId(req.params._id)) {
+
         return res.status(422).json({
           err: null,
           msg: 'userId parameter must be a valid ObjectId.',
@@ -148,7 +149,7 @@ module.exports.updateImage = function (req, res, next) {
 var nodemailer = require('nodemailer');
 
 module.exports.sendMail = function (req, res, next) {
-
+ 
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -165,8 +166,9 @@ module.exports.sendMail = function (req, res, next) {
   
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
+      console.log(yessssssssssssssssssssssssssssssssssssssssssssssssssssssssssss);
       console.log(error);
-      return next(err);
+      //return next(error);
     } else {
       res.status(200).json({
         err: null,
