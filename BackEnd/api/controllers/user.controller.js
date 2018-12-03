@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-  
+  jwt = require('jsonwebtoken'),
   Validations = require('../utils/validations'),
  
   nodemailer = require('nodemailer');
@@ -142,6 +142,7 @@ module.exports.updateImage = function (req, res, next) {
     });
   };
 
+  var nodemailer = require('nodemailer');
 
 
 
@@ -187,17 +188,20 @@ const transporter = nodemailer.createTransport({
 
   };
   
-  transporter.sendMail(mailOptions, function(error, info){
-    if (error) {
+
      
-      console.log(error);
-      return next(error);
-    } else {
-      res.status(200).json({
-        err: null,
-        msg: 'Email is Sent!',
-        data: info
-      });
-    }
-  });
-}
+     transporter.sendMail(mailOptions, function(error, info){
+       if (error) {
+        
+         console.log(error);
+         return next(error);
+       } else {
+         res.status(200).json({
+           err: null,
+           msg: 'Email is Sent!',
+           data: info
+         });
+       }
+     });
+   
+  }
