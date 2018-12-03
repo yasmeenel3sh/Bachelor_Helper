@@ -109,7 +109,7 @@ export class SearchComponent implements OnInit {
   getCurrPage(): void {
     const self = this;
 
-    console.log(self.tags);
+    
     this.searchService.getUsers(self.tags, self.currPage, self.numberPerPage
     ).subscribe(function (retreivedUsers) {
       // self.users = retreivedUsers,

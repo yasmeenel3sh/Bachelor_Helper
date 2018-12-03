@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  domain:"http://localhost:3000/api/" , 
+  domain:"http://localhost:3000/api/" , //"http://192.168.99.100:3000/api/"
   production: false
-};//"http://192.168.99.100:3000/api/"
+};
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
