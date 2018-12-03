@@ -1,5 +1,8 @@
 # Images Upload
 api/uploads/*
+# config
+.env
+api/config/index.js
 
 # Logs
 logs
@@ -99,6 +102,3 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# config
-.env
-api/config/index.js
