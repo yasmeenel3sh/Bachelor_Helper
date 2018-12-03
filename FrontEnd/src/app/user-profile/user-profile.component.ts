@@ -132,7 +132,7 @@ onUpload(){
       info : this.formData.controls.info.value
     }
 
-   console.log(this.formData.controls.major.value);
+   console.log(this.formData.controls.name.value);
     this.http.patch(environment.domain + 'user/update', updatedUser, this.httpOptions)
       .subscribe((data: any) => {
         this.editProfile = false;

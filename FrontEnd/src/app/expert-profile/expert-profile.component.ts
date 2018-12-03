@@ -51,7 +51,7 @@ this.currentUser=new UserDTO();
    .subscribe((res: any) => {
     this.currentUser=res.data;
     this.isRetrieved=true;
-    console.log(res.data);
+    
   }, err => {
    console.log(err);
   });
@@ -69,7 +69,9 @@ onSubmit(){
       subject :this.formData.controls.subject.value
   }
 
-  this.http.post(environment.domain + 'user/mail', mailObject)
+console.log("clicked");
+console.log(mailObject);
+  this.http.post(environment.domain + 'user/mail', mailObject,this.httpOptions)
   .subscribe((data: any) => {
     console.log(data);
     this.sendEmail=false;

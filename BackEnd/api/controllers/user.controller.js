@@ -145,35 +145,43 @@ module.exports.updateImage = function (req, res, next) {
 
   var nodemailer = require('nodemailer');
 
-module.exports.sendMail = function (req, res, next) {
- 
-  var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user:'Bachelor.Helper.GUC@gmail.com',
-      pass:'1olfat2yasmeen3nourhan'
-    }
-  });
-  
-  var mailOptions = {
-    //***********i added this part */
-  //  from: req.body.from,
-    to: req.body.to,
-    subject: req.body.subject,
-    text: 'Sent from: ' + req.body.from + '\n' + req.body.text
-
-  };
-  
-  transporter.sendMail(mailOptions, function(error, info){
-    if (error) {
-      console.log(error);
-      return next(error);
-    } else {
-      res.status(200).json({
-        err: null,
-        msg: 'Email is Sent!',
-        data: null
-      });
-    }
-  });
-}
+  module.exports.sendMail = function (req, res, next) {
+    console.log("sending");
+     var transporter = nodemailer.createTransport(smtpTransport({
+       service: 'gmail',
+   
+       auth: {
+         user:'Bachelor.Helper.GUC@gmail.com',
+         pass:'1olfat2yasmeen3nourhan'
+       }
+     }));
+     transporter.verify(function(error, success) {
+       if (error) {
+            console.log(error);
+       } else {
+            console.log('Server is ready to take our messages');
+       }
+    });
+     var mailOptions = {
+       //***********i added this part */
+       from: req.body.from,
+       to: req.body.to,
+       subject: req.body.subject,
+       text: 'Sent from: ' + req.body.from + '\n' + req.body.text
+   
+     };
+     
+     transporter.sendMail(mailOptions, function(error, info){
+       if (error) {
+        
+         console.log(error);
+         return next(error);
+       } else {
+         res.status(200).json({
+           err: null,
+           msg: 'Email is Sent!',
+           data: info
+         });
+       }
+     });
+   }
