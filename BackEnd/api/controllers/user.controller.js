@@ -161,16 +161,19 @@ module.exports.sendMail = function (req, res, next) {
     }
  });
   var mailOptions = {
+    //***********i added this part */
+    from: req.body.from,
     to: req.body.to,
     subject: req.body.subject,
     text: 'Sent from: ' + req.body.from + '\n' + req.body.text
+
   };
   
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
      
       console.log(error);
-      //return next(error);
+      return next(error);
     } else {
       res.status(200).json({
         err: null,
