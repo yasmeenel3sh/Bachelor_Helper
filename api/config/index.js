@@ -1,12 +1,12 @@
 // Global App Configuration
 module.exports = {
     //BACKEND_URI: 'http://localhost:3000/',
-    ENV = 'production',
+    NODE_ENV: 'production',
     FRONTEND_URI: process.env.FRONTEND_URI || 'http://localhost:4200/',
     SECRET: '32876qihsdh76@&#!742(*#HG&#28702y&##@^!()(&^#))jhscbd',
     MONGO_URI:
         process.env.NODE_ENV === 'production'
-            ? 'mongodb://<x>:<123456a>@ds161793.mlab.com:61793/bachelor-helper'
+            ? ''
             : process.env.NODE_ENV === 'test'
             ? 'mongodb://localhost:27017/Bachtest'
             : 'mongodb://localhost:27017/Bachelor_Helper', //'mongodb://database/Bachelor_Helper',//
