@@ -43,7 +43,7 @@ module.exports = {
 
 ```
 
-3- **Update Environt in FrontEnd**
+3- **Update Environment in FrontEnd**
 ```
 
  a)Go to FrontEnd
