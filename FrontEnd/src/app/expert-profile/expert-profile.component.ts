@@ -69,7 +69,6 @@ onSubmit(){
       subject :this.formData.controls.subject.value
   }
 
-
   this.http.post(environment.domain + 'user/mail', mailObject)
   .subscribe((data: any) => {
     console.log(data);

@@ -143,10 +143,7 @@ module.exports.updateImage = function (req, res, next) {
     });
   };
 
-
-
-
-var nodemailer = require('nodemailer');
+  var nodemailer = require('nodemailer');
 
 module.exports.sendMail = function (req, res, next) {
  
@@ -160,7 +157,7 @@ module.exports.sendMail = function (req, res, next) {
   
   var mailOptions = {
     //***********i added this part */
-    from: req.body.from,
+  //  from: req.body.from,
     to: req.body.to,
     subject: req.body.subject,
     text: 'Sent from: ' + req.body.from + '\n' + req.body.text
@@ -169,7 +166,6 @@ module.exports.sendMail = function (req, res, next) {
   
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
-      console.log('yessssssssssssssssssss');
       console.log(error);
       return next(error);
     } else {
