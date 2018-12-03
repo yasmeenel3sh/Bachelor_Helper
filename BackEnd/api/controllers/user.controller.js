@@ -1,11 +1,15 @@
 var mongoose = require('mongoose'),
   jwt = require('jsonwebtoken'),
   Validations = require('../utils/validations'),
-  Encryption = require('../utils/encryption'),
-  EMAIL_REGEX = require('../config').EMAIL_REGEX
-  const multer =require('multer');
  
+  nodemailer = require('nodemailer');
 
+  const multer =require('multer');
+
+  User = mongoose.model('User');
+  require('dotenv').config();
+  
+ 
 //************************************************ */
 //this part is used to create a folder in the backend to 
 //store the files uploaded but since its already implemented in the 
@@ -23,7 +27,8 @@ var mongoose = require('mongoose'),
  //const upload =multer({storage:storage});
 //************************************************** */
 
-  User = mongoose.model('User');
+
+  
  
   //get a user by id
   module.exports.getUser = function (req, res, next)  {
@@ -93,13 +98,7 @@ var mongoose = require('mongoose'),
         data: null
       });
     }
-    if (!(/^[a-zA-Z]+$/.test(req.body.name) )) {
-      return res.status(422).json({
-        err: null,
-        msg: 'Name is invalid (only English characters).',
-        data: null
-      });
-    }
+
   
     let set = {
       name: req.body.name,
@@ -145,31 +144,51 @@ var mongoose = require('mongoose'),
 
   var nodemailer = require('nodemailer');
 
-  module.exports.sendMail = function (req, res, next) {
-    console.log("sending");
-     var transporter = nodemailer.createTransport(smtpTransport({
-       service: 'gmail',
-   
-       auth: {
-         user:'Bachelor.Helper.GUC@gmail.com',
-         pass:'1olfat2yasmeen3nourhan'
-       }
-     }));
-     transporter.verify(function(error, success) {
-       if (error) {
-            console.log(error);
-       } else {
-            console.log('Server is ready to take our messages');
-       }
-    });
-     var mailOptions = {
-       //***********i added this part */
-       from: req.body.from,
-       to: req.body.to,
-       subject: req.body.subject,
-       text: 'Sent from: ' + req.body.from + '\n' + req.body.text
-   
-     };
+
+
+
+module.exports.sendMail = function (req, res, next) {
+ console.log("sending");
+
+// console.log(process.env.MAIL_USER);
+// console.log(process.env.SECRET_KEY);
+// console.log(process.env.CLIENT_ID);
+// console.log(process.env.REFRESH_TOKEN);
+// console.log(process.env.ACCESS_TOKEN);
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+       type: "OAuth2",
+      //  user: "Bachelor.Helper.GUC@gmail.com", 
+      //  clientId: "1059268086385-5pp1qbdrd6k8tmg9vdquc29a6h602uf2.apps.googleusercontent.com",
+      //  clientSecret: "qWb9ElFfSqYOJ_rWEPKmSXaG",
+      //  refreshToken: "1/EpKVnQxa1fahXWZM6dB7LIFHWB4sooo5dvs_-PeYgP0",
+      //  accessToken: "ya29.GltnBrLai0RJ01XzLw3466hcekfMakCPTujeni0shn8A6dmnEBScFow-0gbwd2SozXHxTf4LdtVGYAufNQZVFCFvw_YuKR8kV4f_5UN3kyNYjdgeCp2n7o7JVpMx"
+      user: process.env.MAIL_USER, 
+      clientId: process.env.CLIENT_ID,
+      clientSecret: process.env.SECRET_KEY,
+      refreshToken: process.env.REFRESH_TOKEN,
+      accessToken: process.env.ACCESS_TOKEN
+
+  }
+});
+  transporter.verify(function(error, success) {
+    if (error) {
+         console.log(error);
+    } else {
+         console.log('Server is ready to take our messages');
+    }
+ });
+  var mailOptions = {
+    //***********i added this part */
+    from: req.body.from,
+    to: req.body.to,
+    subject: req.body.subject,
+    text: 'Sent from: ' + req.body.from + '\n' + req.body.text
+
+  };
+  
+
      
      transporter.sendMail(mailOptions, function(error, info){
        if (error) {
@@ -184,4 +203,5 @@ var mongoose = require('mongoose'),
          });
        }
      });
-   }
+   
+  }
